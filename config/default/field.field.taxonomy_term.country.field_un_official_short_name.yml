@@ -1,0 +1,19 @@
+uuid: 489b4765-f493-49b6-865e-570720ac7e8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_un_official_short_name
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_un_official_short_name
+field_name: field_un_official_short_name
+entity_type: taxonomy_term
+bundle: country
+label: 'UN official short name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

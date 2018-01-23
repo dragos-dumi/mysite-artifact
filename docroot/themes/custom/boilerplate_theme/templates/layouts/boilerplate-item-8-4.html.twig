@@ -1,0 +1,18 @@
+{%
+set classes = [
+'boilerplate-item-8-4',
+]
+%}
+
+{% if content %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="row">
+    <div class="boilerplate-news-item__left col-sm-8">
+      {{ content.right }}
+    </div>
+    <div class="boilerplate-news-item__right col-sm-4">
+      {{ content.left }}
+    </div>
+  </div>
+</div>
+{% endif %}

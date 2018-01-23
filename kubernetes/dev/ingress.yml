@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: mysite-ip
+  labels:
+    app: drupal
+    tier: nginx-fpm
+    environment: dev
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: varnish-svc
+#          serviceName: nginx
+          servicePort: 80

@@ -1,0 +1,19 @@
+uuid: 790a77fa-43bd-491c-a788-f5406ab6f948
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_official_name
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_official_name
+field_name: field_official_name
+entity_type: taxonomy_term
+bundle: country
+label: 'Official name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

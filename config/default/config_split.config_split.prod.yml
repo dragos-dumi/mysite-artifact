@@ -1,0 +1,16 @@
+uuid: 46d6d341-14e0-4625-8e0a-03722c134433
+langcode: en
+status: true
+dependencies: {  }
+id: prod
+label: Prod
+folder: ../config/envs/prod
+module:
+  raven: 0
+theme: {  }
+blacklist:
+  - raven.settings
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

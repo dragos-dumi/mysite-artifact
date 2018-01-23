@@ -1,0 +1,78 @@
+uuid: 23d53d45-2765-45ab-803f-ab83d80d6a2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news.body
+    - field.field.node.news.field_countries
+    - field.field.node.news.field_image
+    - field.field.node.news.field_in_slideshow
+    - image.style.large
+    - node.type.news
+  module:
+    - ds
+    - image
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: boilerplate_item_8_4
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      right:
+        - node_post_date
+        - body
+      left:
+        - field_image
+        - field_countries
+    fields:
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 0
+        label: hidden
+        formatter: ds_post_date_d_f_y
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.news.default
+targetEntityType: node
+bundle: news
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: right
+  field_countries:
+    weight: 3
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_label
+    region: left
+  field_image:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: large
+      image_link: content
+    third_party_settings: {  }
+    type: image
+    region: left
+hidden:
+  field_in_slideshow: true
+  langcode: true
+  links: true

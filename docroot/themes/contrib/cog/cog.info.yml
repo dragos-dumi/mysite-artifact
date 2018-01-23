@@ -1,0 +1,22 @@
+name: Cog
+type: theme
+description: 'Acquia D8 base theme'
+package: Core
+# core: 8.x
+libraries:
+  - cog/lib
+regions:
+  branding: Branding
+  header: Header
+  pre_content: Pre content
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  post_content: Post content
+  footer: Footer
+
+# Information added by Drupal.org packaging script on 2018-01-18
+version: '8.x-1.13'
+core: '8.x'
+project: 'cog'
+datestamp: 1516296834

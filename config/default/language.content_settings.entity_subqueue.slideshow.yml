@@ -1,0 +1,11 @@
+uuid: 06efa7c0-34d5-4bd3-a49d-ca285e7e431f
+langcode: en
+status: true
+dependencies:
+  config:
+    - entityqueue.entity_queue.slideshow
+id: entity_subqueue.slideshow
+target_entity_type_id: entity_subqueue
+target_bundle: slideshow
+default_langcode: site_default
+language_alterable: false

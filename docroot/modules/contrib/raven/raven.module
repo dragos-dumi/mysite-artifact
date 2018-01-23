@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Raven Drupal module.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function raven_page_attachments(array &$page) {
+  if (\Drupal::config('raven.settings')->get('javascript_error_handler') && \Drupal::currentUser()->hasPermission('send javascript errors to sentry')) {
+    $page['#attached']['drupalSettings']['raven']['dsn'] = \Drupal::config('raven.settings')->get('public_dsn');
+    // Other modules can attach Raven.js options to the page.
+    if (!isset($page['#attached']['drupalSettings']['raven']['options'])) {
+      $page['#attached']['drupalSettings']['raven']['options'] = new \stdClass();
+    }
+    $page['#attached']['library'][] = 'raven/raven';
+  }
+}

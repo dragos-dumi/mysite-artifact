@@ -1,0 +1,79 @@
+version: '3'
+services:
+  db:
+    build: docker/db
+    restart: always
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
+      - ./docker-runtime/mysql:/var/lib/mysql
+    ports:
+      - "${MYSQL_DEBUG_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+  nginx:
+    build: docker/nginx
+    restart: always
+    ports:
+      - "${WEB_PORT}:80"
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - php-fpm
+    links:
+      - php-fpm:php-fpm
+  php-fpm:
+    build: docker/php-fpm
+    restart: always
+    volumes:
+      - ./:/var/www
+      - ./docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    links:
+      - db:db
+      - redis:redis
+    depends_on:
+      - db
+      - redis
+    environment:
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_HOST: "${MYSQL_HOST}"
+      MYSQL_PORT: "${MYSQL_PORT}"
+      REDIS_HOST: "${REDIS_HOST}"
+      HASH_SALT: "${HASH_SALT}"
+  php-cli:
+    build: docker/php-cli
+    restart: always
+    volumes:
+      - ./:/var/www
+    links:
+      - db:db
+      - redis:redis
+    depends_on:
+      - db
+      - redis
+    environment:
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_HOST: "${MYSQL_HOST}"
+      MYSQL_PORT: "${MYSQL_PORT}"
+      REDIS_HOST: "${REDIS_HOST}"
+      HASH_SALT: "${HASH_SALT}"
+  redis:
+    image: redis
+  varnish:
+    build: docker/varnish
+    depends_on:
+      - nginx
+    links:
+      - nginx:nginx
+    environment:
+      VARNISH_SECRET: "${VARNISH_SECRET}"
+      VARNISH_BACKEND_HOST: "${VARNISH_BACKEND_HOST}"
+      VARNISH_BACKEND_PORT: "${VARNISH_BACKEND_PORT}"
+    ports:
+    - "${WEB_PORT_VARNISH}:6081"

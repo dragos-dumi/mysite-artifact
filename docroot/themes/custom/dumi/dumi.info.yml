@@ -1,0 +1,19 @@
+name: Dumi Personal Theme
+type: theme
+description: 'Dumi theme from COG'
+core: '8.x'
+base theme: cog
+libraries:
+  - dumi/fonts
+  - dumi/fontawesome
+  - dumi/global_styles
+regions:
+  branding: Branding
+  header: Header
+  pre_content: 'Pre content'
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  post_content: 'Post content'
+  footer: Footer
+

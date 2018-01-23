@@ -1,0 +1,13 @@
+obfuscate:
+  version: VERSION
+  js:
+    js/spamspan.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+atsign:
+  version: VERSION
+  css:
+    theme:
+      css/spamspan.atsign.css: {}

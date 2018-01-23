@@ -1,0 +1,61 @@
+uuid: 66c324d5-5d82-44fe-9d6c-26c39cf54122
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.panelizer
+    - node.type.landing_page
+  module:
+    - panelizer
+id: node.landing_page.panelizer
+field_name: panelizer
+entity_type: node
+bundle: landing_page
+label: Panelizer
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: diff
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: full
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: revision
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: rss
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: search_index
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: search_result
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: slideshow
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: teaser
+  -
+    panels_display: {  }
+    default: __bundle_default__
+    view_mode: teaser_2
+  -
+    view_mode: token
+    default: __bundle_default__
+    panels_display: {  }
+default_value_callback: ''
+settings: {  }
+field_type: panelizer

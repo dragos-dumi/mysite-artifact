@@ -1,0 +1,16 @@
+{%
+set classes = [
+'boilerplate-slideshow-item',
+]
+%}
+
+{% if content %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="boilerplate-slideshow-item__media">
+    {{ content.media }}
+  </div>
+  <div class="boilerplate-slideshow-item__caption">
+    {{ content.caption }}
+  </div>
+</div>
+{% endif %}

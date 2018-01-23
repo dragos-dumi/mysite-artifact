@@ -1,0 +1,117 @@
+uuid: 04cf5960-7ce7-4386-b3c0-5b33d479e186
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser_2
+    - field.field.node.news.body
+    - field.field.node.news.field_countries
+    - field.field.node.news.field_image
+    - field.field.node.news.field_in_slideshow
+    - node.type.news
+  module:
+    - blazy
+    - ds
+    - panelizer
+    - smart_trim
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: boilerplate_teaser_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      right:
+        - 'bundle_field:node'
+        - node_title
+        - node_post_date
+        - body
+      left:
+        - field_image
+    fields:
+      'bundle_field:node':
+        plugin_id: 'bundle_field:node'
+        weight: 0
+        label: hidden
+        formatter: default
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 2
+        label: hidden
+        formatter: ds_post_date_d_f_y
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.news.teaser_2
+targetEntityType: node
+bundle: news
+mode: teaser_2
+content:
+  body:
+    label: hidden
+    type: smart_trim
+    weight: 3
+    settings:
+      trim_length: '210'
+      trim_type: chars
+      trim_suffix: …
+      more_link: '1'
+      more_text: 'Read more'
+      summary_handler: trim
+      trim_options:
+        text: text
+      more_class: more-link
+    third_party_settings: {  }
+    region: right
+  field_image:
+    weight: 4
+    label: hidden
+    settings:
+      image_style: large
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      media_switch: ''
+      ratio: ''
+      responsive_image_style: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings: {  }
+    type: blazy
+    region: left
+hidden:
+  field_countries: true
+  field_in_slideshow: true
+  langcode: true
+  links: true

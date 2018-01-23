@@ -1,0 +1,22 @@
+.geofield-map-cnt {
+  display: block;
+  margin: 10px 0;
+  border: solid thin darkgray;
+  .leaflet-top {
+    z-index: 10;
+  }
+}
+
+.geofield-map-buttons {
+  margin: 10px 0;
+}
+
+.geofield_map_geoaddress_field_hidden {
+  display: none;
+}
+
+.gmap-apikey-missing.geofield-map-warning,
+.gmap-apikey-missing.geofield-map-warning a {
+  margin: 4px 0;
+  color: lightgray;
+}

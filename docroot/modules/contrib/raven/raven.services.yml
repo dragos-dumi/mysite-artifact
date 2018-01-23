@@ -1,0 +1,6 @@
+services:
+  logger.raven:
+    class: Drupal\raven\Logger\Raven
+    arguments: ['@config.factory', '@logger.log_message_parser', '@module_handler', '%kernel.environment%']
+    tags:
+      - { name: logger }

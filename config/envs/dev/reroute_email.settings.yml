@@ -1,0 +1,3 @@
+reroute_email_enable: true
+reroute_email_address: no-reply@ibm.com
+reroute_email_enable_message: false

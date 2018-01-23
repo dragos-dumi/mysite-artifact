@@ -1,0 +1,23 @@
+uuid: cacc64e7-4862-4510-b2f5-6ba09df7d150
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_in_slideshow
+    - node.type.event
+id: node.event.field_in_slideshow
+field_name: field_in_slideshow
+entity_type: node
+bundle: event
+label: 'Show in slideshow'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

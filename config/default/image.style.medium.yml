@@ -1,0 +1,25 @@
+uuid: 2c28292d-3d69-4c5e-8183-af19d81e37ca
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+_core:
+  default_config_hash: Y9NmnZHQq20ASSyTNA6JnwtWrJJiSajOehGDtmUFdM0
+name: medium
+label: 'Medium (220×220) + Free crop'
+effects:
+  bddf0d06-42f9-4c75-a700-a33cafa25ea0:
+    uuid: bddf0d06-42f9-4c75-a700-a33cafa25ea0
+    id: image_scale
+    weight: -9
+    data:
+      width: 220
+      height: 220
+      upscale: false
+  f4d0e47a-83e3-49bd-af63-797e991851d7:
+    uuid: f4d0e47a-83e3-49bd-af63-797e991851d7
+    id: crop_crop
+    weight: -10
+    data:
+      crop_type: free_crop

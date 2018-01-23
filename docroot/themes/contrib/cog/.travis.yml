@@ -1,0 +1,89 @@
+sudo: false
+language: php
+
+php:
+  - 7
+  - 5.6
+
+env:
+  global:
+    - DOCROOT=$TRAVIS_BUILD_DIR/../drupal
+    - COG_DIR=$DOCROOT/themes/contrib/cog
+    - COGNIZANT_DIR=$DOCROOT/themes/custom/cognizant
+
+cache:
+  bundler: true
+  apt: true
+  directories:
+  - "$HOME/.composer/cache"
+  - "$HOME/.composer/vendor"
+  - "$HOME/.drush/cache"
+  - "$HOME/.npm"
+  - "$HOME/.nvm"
+  - "$COGNIZANT_DIR/node_modules"
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+# Set up environment.
+before_install:
+  # Disable xdebug.
+  - phpenv config-rm xdebug.ini
+
+  # Set up composer.
+  - composer self-update
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+  # Install drush
+  - composer global require drush/drush:8.* --prefer-source
+  - composer global require drupal/coder:8.* --prefer-source
+  - phpenv rehash
+
+  # Clear drush release history cache, to pick up new releases.
+  - rm -f ~/.drush/cache/download/*---updates.drupal.org-release-history-*
+
+  # Create MySQL Database
+  - mysql -e 'create database drupal;'
+
+  # Copy cached dependencies back to travis build dir so that they are
+  # not wiped out by `drush dl drupal` command.
+  - mv $COGNIZANT_DIR/node_modules $TRAVIS_BUILD_DIR/
+
+# Install Drupal and Cog itself.
+install:
+  # Install drupal default profile
+  - cd ..
+  - drush dl drupal --drupal-project-rename=drupal -y
+  - cd drupal
+
+  # Copy cog into themes/contrib/cog.
+  - mkdir -p themes/contrib/cog
+  - cp -R ${TRAVIS_BUILD_DIR}/* themes/contrib/cog/
+
+  # Make custom dir for subtheme
+  - mkdir -p themes/custom
+
+  # Install Drupal and enable cog.
+  - drush --verbose site-install minimal --db-url=mysql://root:@127.0.0.1/drupal --yes
+  - drush en cog -y
+  - drush cog "Cognizant"
+
+  # Set up front-end dependencies.
+  - cd $COGNIZANT_DIR
+
+  - nvm ls-remote
+  - nvm install 8.9.1
+  - nvm use 8.9.1
+  - npm install -g gulp-cli
+  - npm install -g npm@latest
+  - npm run install-tools
+
+# Run cog tasks.
+script:
+  # Codesniff all files, ignore third party libraries and compiled CSS.
+  - phpcs --standard=$HOME/.composer/vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml --ignore=*/STARTERKIT/gulp-tasks/*,*/STARTERKIT/gulpfile.js,*/STARTERKIT/theme-settings.php,*/STARTERKIT/STARTERKIT.theme,*/node_modules/*,*/styleguide/*,*/css/*,**/*.md $COG_DIR
+  - phpcs --standard=$HOME/.composer/vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml --ignore=*/gulp-tasks/*,gulpfile.js,*/node_modules/*,*/styleguide/*,*/css/*,**/*.md $COGNIZANT_DIR
+
+  - gulp

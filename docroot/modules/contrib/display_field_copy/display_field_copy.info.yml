@@ -1,0 +1,13 @@
+name: Display Field Copy
+type: module
+description: Copies the display so it can be shown multiple times on a page.
+# core: 8.x
+package: Display Suite
+dependencies:
+  - ds
+
+# Information added by Drupal.org packaging script on 2017-04-18
+version: '8.x-1.0'
+core: '8.x'
+project: 'display_field_copy'
+datestamp: 1492559945

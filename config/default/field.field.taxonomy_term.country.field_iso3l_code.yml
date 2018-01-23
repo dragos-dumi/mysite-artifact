@@ -1,0 +1,19 @@
+uuid: 1327c429-0040-4218-878f-878e94ae2d29
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_iso3l_code
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_iso3l_code
+field_name: field_iso3l_code
+entity_type: taxonomy_term
+bundle: country
+label: 'Country ISO 3-letter Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,16 @@
+settings:
+  default_wizard_complete_label: Terminé
+  default_submit_button_label: Soumettre
+  default_reset_button_label: Réinitialiser
+  default_wizard_prev_button_label: '< Page précédente'
+  default_wizard_next_button_label: 'Page suivante >'
+  default_wizard_start_label: Début
+  default_wizard_confirmation_label: Terminé
+  default_preview_next_button_label: Aperçu
+  default_preview_prev_button_label: '< Précédent'
+  default_preview_label: Aperçu
+  default_draft_button_label: 'Enregistrer le brouillon'
+  default_draft_saved_message: 'Soumissions enregistrées. Vous pourrez revenir sur ce formulaire plus tard, cela restaurera les valeurs actuelles.'
+  default_draft_loaded_message: 'Un formulaire partiellement complété a été trouvé. Veuillez compléter les portions restantes.'
+element:
+  default_more_title: Plus

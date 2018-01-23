@@ -1,0 +1,22 @@
+uuid: a97b3747-1ceb-4275-a890-8e4f5914220b
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - boilerplate_theme
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: boilerplate_theme_messages
+theme: boilerplate_theme
+region: content
+weight: -4
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

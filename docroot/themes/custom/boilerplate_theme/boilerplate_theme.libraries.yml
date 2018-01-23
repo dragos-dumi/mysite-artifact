@@ -1,0 +1,38 @@
+fonts:
+  license:
+    name: SIL Open Font License, 1.1
+    url: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext: { type: external }
+flexibility:
+    js:
+      libraries/flexibility/flexibility.js: { minified: true }
+
+bootstrap-js:
+    js:
+     libraries/bootstrap/js/transition.js : {}
+     libraries/bootstrap/js/alert.js : {}
+     libraries/bootstrap/js/button.js : {}
+     libraries/bootstrap/js/carousel.js : {}
+     libraries/bootstrap/js/collapse.js : {}
+     libraries/bootstrap/js/dropdown.js : {}
+     libraries/bootstrap/js/modal.js : {}
+     libraries/bootstrap/js/tooltip.js : {}
+     libraries/bootstrap/js/popover.js : {}
+     libraries/bootstrap/js/scrollspy.js : {}
+     libraries/bootstrap/js/tab.js : {}
+     libraries/bootstrap/js/affix.js : {}
+    dependencies:
+      - core/jquery
+
+global-styling:
+    css:
+      theme:
+        css/style.css: {}
+    dependencies:
+      - core/jquery
+      - core/underscore
+      - boilerplate_theme/bootstrap-js
+      - boilerplate_theme/flexibility
+      - boilerplate_theme/fonts

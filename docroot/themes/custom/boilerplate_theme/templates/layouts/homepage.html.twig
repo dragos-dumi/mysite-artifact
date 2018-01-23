@@ -1,0 +1,21 @@
+{%
+set classes = [
+'homepage-wrapper',
+]
+%}
+
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class="row">
+      <div class="col-sm-12">
+        {{ content.slideshow }}
+      </div>
+      <div class="col-sm-8">
+        {{ content.left }}
+      </div>
+      <div class="col-sm-4">
+        {{ content.right }}
+      </div>
+    </div>
+  </div>
+{% endif %}

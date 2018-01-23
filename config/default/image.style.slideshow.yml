@@ -1,0 +1,22 @@
+uuid: c2488f77-9cd6-495f-a0fe-ebdfda637acb
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+name: slideshow
+label: 'Slideshow (1200X400)'
+effects:
+  66e1bc0c-d5b7-453f-a779-a7d286286198:
+    uuid: 66e1bc0c-d5b7-453f-a779-a7d286286198
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: slideshow
+  3021055b-69de-455b-bdcf-7c8de451e667:
+    uuid: 3021055b-69de-455b-bdcf-7c8de451e667
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 1200
+      height: 400

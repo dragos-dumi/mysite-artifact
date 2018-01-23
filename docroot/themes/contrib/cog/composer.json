@@ -1,0 +1,13 @@
+{
+  "name": "drupal/acquia-cog",
+  "type": "drupal-theme",
+  "description": "Acquia maintained starter theme.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://github.com/acquia-pso/cog",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/acquia-pso/cog/issues",
+    "source": "https://github.com/acquia-pso/cog"
+  }
+}

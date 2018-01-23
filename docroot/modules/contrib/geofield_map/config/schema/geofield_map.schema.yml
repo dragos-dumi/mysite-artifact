@@ -1,0 +1,7 @@
+geofield_map.settings:
+  type: config_object
+  label: 'Geofield Map settings'
+  mapping:
+    gmaps_api_key:
+      type: string
+      label: 'Google Maps API Key'

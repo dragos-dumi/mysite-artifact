@@ -1,0 +1,31 @@
+core: 8.x
+type: theme
+base theme: bootstrap
+
+name: 'Boilerplate THEME'
+description: ''
+package: 'Bootstrap'
+
+regions:
+  admin_shortcuts: 'Admin Shortcuts (Authenticated Users Only)'
+  top_bar: 'Top bar'
+  branding: 'Logo'
+  search_box: 'Search Box'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  sidebar_first: 'First sidebar'
+  help: 'Help'
+  content: 'Content'
+  content_bottom: 'Content: Bottom'
+  sidebar_second: 'Second sidebar'
+  footer_col_1: 'Footer Column 1'
+  footer_col_2: 'Footer Column 2'
+  footer_col_3: 'Footer Column 3'
+  footer_col_4: 'Footer Column 4'
+  footer2_col_1: 'Footer 2 Column 1'
+  footer2_col_2: 'Footer 2 Column 2'
+  footer2_col_3: 'Footer 2 Column 3'
+  footer2_col_4: 'Footer 2 Column 4'
+  footer: 'Footer'
+
+libraries:
+  - 'boilerplate_theme/global-styling'

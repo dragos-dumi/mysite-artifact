@@ -1,0 +1,6 @@
+name: security_review_test
+type: module
+core: 8.x
+package: Testing
+dependencies:
+  - security_review

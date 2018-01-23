@@ -1,0 +1,23 @@
+uuid: 9c4b4d7d-0af7-4a97-8b2d-fa6b2349dae4
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+name: extra_large
+label: 'XXL (1400x1200) + Free crop'
+effects:
+  de1659e0-0db8-46aa-aa35-c179d22f0e37:
+    uuid: de1659e0-0db8-46aa-aa35-c179d22f0e37
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: free_crop
+  7e9fafa5-f6e1-485c-ab4e-7572c6af38ef:
+    uuid: 7e9fafa5-f6e1-485c-ab4e-7572c6af38ef
+    id: image_scale
+    weight: 2
+    data:
+      width: 1400
+      height: 1200
+      upscale: false

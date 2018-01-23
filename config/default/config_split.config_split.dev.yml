@@ -1,0 +1,24 @@
+uuid: 5004cfc4-2198-44cf-bd10-961ae6f0efd0
+langcode: en
+status: true
+dependencies: {  }
+id: dev
+label: Dev
+folder: ../config/envs/dev
+module:
+  dblog: 0
+  devel: 0
+  kint: 0
+  reroute_email: 0
+  stage_file_proxy: 0
+  webprofiler: 0
+theme: {  }
+blacklist:
+  - devel.settings
+  - devel.toolbar.settings
+  - webprofiler.config
+  - stage_file_proxy.settings
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

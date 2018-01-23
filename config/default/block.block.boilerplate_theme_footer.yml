@@ -1,0 +1,26 @@
+uuid: 60dec7fb-ee5b-451c-a2a3-b40daac4191b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - boilerplate_theme
+_core:
+  default_config_hash: kkISXE1LT2FJEoYnqCrCpeFB-2pmGmMxMklVk7rQcfg
+id: boilerplate_theme_footer
+theme: boilerplate_theme
+region: footer_col_2
+weight: -5
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Information links'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

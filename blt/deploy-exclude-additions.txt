@@ -1,0 +1,11 @@
+docker-runtime
+
+private-files/*
+
+# Exclude less dir on deploy.
+/docroot/themes/custom/*/less
+/docroot/themes/custom/libraries/bootstrap/*/less
+/docroot/themes/custom/libraries/bootstrap/*/dist
+/docroot/themes/custom/libraries/bootstrap/*/fonts
+/docroot/themes/custom/libraries/bootstrap/*/grunt
+

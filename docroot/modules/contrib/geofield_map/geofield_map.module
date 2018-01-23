@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Contains the geofield_map.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function geofield_map_help($route_name, RouteMatchInterface $route_match) {
+  $output = '';
+  switch ($route_name) {
+    case 'help.page.geofield_map':
+      $output .= '<h3>' . t('Geofield Map About') . '</h3>';
+      $output .= '<p>' . t('Map Widget, Formatter and Views integration for Geofields.') . '</p>';
+      $output .= '<p>' . t('For more info: @readme', [
+        '@readme' => Link::fromTextAndUrl(t('Readme.md'), Url::fromUri('base:/' . drupal_get_path('module', 'geofield_map') . '/README.md', ['attributes' => ['target' => '_blank']]))->toString(),
+      ]) . '</p>';
+
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function geofield_map_theme($existing, $type, $theme, $path) {
+  return [
+    'geofield_map_widget' => [
+      'variables' => [
+        'mapid' => NULL,
+        'width' => '100%',
+        'height' => '450px',
+      ],
+    ],
+    'geofield_google_map' => [
+      'variables' => [
+        'mapid' => NULL,
+        'width' => '100%',
+        'height' => '450px',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Load all Geofield Google Map client files and return markup for a map.
+ *
+ * @param array $js_settings
+ *   The map rendering data.
+ *
+ * @return array
+ *   The returned render array.
+ */
+function geofield_map_googlemap_render(array $js_settings) {
+
+  $render_array = [
+    '#theme' => 'geofield_google_map',
+    '#mapid' => $js_settings['mapid'],
+    '#height' => $js_settings['map_settings']['map_dimensions']['height'],
+    '#width' => $js_settings['map_settings']['map_dimensions']['width'],
+    '#attached' => [
+      'library' => [
+        'geofield_map/geojson',
+        'geofield_map/geofield_gmap',
+      ],
+      'drupalSettings' => [
+        'geofield_google_map' => [$js_settings['mapid'] => $js_settings],
+      ],
+    ],
+    '#cache' => [
+      'contexts' => ['url.path', 'url.query_args'],
+    ],
+  ];
+
+  // Add the Marker Cluster library, if asked.
+  if ($js_settings['map_settings']['map_markercluster']['markercluster_control']) {
+    $render_array['#attached']['library'][] = 'geofield_map/marker_cluster';
+  }
+
+  // Add the OverlappingMarkerSpiderfier library, if asked.
+  if (!isset($js_settings['map_settings']['map_oms']['map_oms_control']) || $js_settings['map_settings']['map_oms']['map_oms_control']) {
+    $render_array['#attached']['library'][] = 'geofield_map/overlappingmarkerspiderfier';
+  }
+
+  return $render_array;
+}

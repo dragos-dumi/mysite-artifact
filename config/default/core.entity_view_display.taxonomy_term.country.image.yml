@@ -1,0 +1,48 @@
+uuid: 6e1056b8-adcd-4e85-9469-7e70c6111e56
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.image
+    - field.field.taxonomy_term.country.field_image
+    - field.field.taxonomy_term.country.field_un_official_short_name
+    - image.style.thumbnail
+    - taxonomy.vocabulary.country
+  module:
+    - ds
+    - image
+    - panelizer
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: true
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - field_image
+id: taxonomy_term.country.image
+targetEntityType: taxonomy_term
+bundle: country
+mode: image
+content:
+  field_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  field_un_official_short_name: true
+  langcode: true

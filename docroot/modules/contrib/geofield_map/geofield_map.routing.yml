@@ -1,0 +1,7 @@
+geofield_map.settings:
+  path: '/admin/config/system/geofield_map_settings'
+  defaults:
+    _form:  '\Drupal\geofield_map\Form\GeofieldMapSettingsForm'
+    _title: 'Geofield Map settings'
+  requirements:
+    _permission: 'configure geofield_map'

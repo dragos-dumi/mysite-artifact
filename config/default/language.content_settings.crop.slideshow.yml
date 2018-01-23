@@ -1,0 +1,11 @@
+uuid: 91519f9d-60cd-44db-99fe-950b659bb328
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.slideshow
+id: crop.slideshow
+target_entity_type_id: crop
+target_bundle: slideshow
+default_langcode: site_default
+language_alterable: false

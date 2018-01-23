@@ -1,0 +1,35 @@
+uuid: 69990072-b60b-4862-bace-a575bca6c21f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.field.block_content.basic.body
+    - field.field.block_content.basic.field_title
+  module:
+    - string_field_formatter
+    - text
+_core:
+  default_config_hash: orJpHUlAc_wiQLMUjIgEJXGeiqylGHMPcmNRjGtct-M
+id: block_content.basic.default
+targetEntityType: block_content
+bundle: basic
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      wrap_tag: h2
+    third_party_settings: {  }
+    type: plain_string_formatter
+    region: content
+hidden:
+  langcode: true

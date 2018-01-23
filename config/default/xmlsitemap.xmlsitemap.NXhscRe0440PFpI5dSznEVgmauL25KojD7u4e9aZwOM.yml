@@ -1,0 +1,11 @@
+uuid: e8d0f049-ff00-4413-b2df-adbf19fb8771
+langcode: en
+status: true
+dependencies: {  }
+id: NXhscRe0440PFpI5dSznEVgmauL25KojD7u4e9aZwOM
+label: 'http://bioland.local/'
+chunks: 1
+links: 1
+max_filesize: 263
+context: {  }
+updated: 1507625396

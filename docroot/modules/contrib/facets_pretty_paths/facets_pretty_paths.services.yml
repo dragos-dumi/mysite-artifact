@@ -1,0 +1,8 @@
+services:
+  facets_pretty_paths.path_processor:
+    class: Drupal\facets_pretty_paths\PathProcessorPrettyPaths
+    tags:
+      - { name: path_processor_inbound, priority: 80 }
+  plugin.manager.facets_pretty_paths.coder:
+    class: Drupal\facets_pretty_paths\Coder\CoderPluginManager
+    parent: default_plugin_manager

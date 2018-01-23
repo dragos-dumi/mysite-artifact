@@ -1,0 +1,48 @@
+project:
+  machine_name: dragos_dumi
+  prefix: dragos_dumi
+  human_name: 'Dragos Dumitrescu'
+  profile:
+    name: standard
+  local:
+    protocol: http
+    hostname: '${project.machine_name}.local'
+git:
+  default_branch: develop
+  remotes:
+    - 'git@github.com:dragos-dumi/mysite-artifact.git'
+  validation:
+    commit-msg: { pattern: /(.*?)/, example: 'Example: Added new image field for news' }
+  user:
+    name: 'Dragos Dumitrescu'
+    email: ci@no-reply.org
+drush:
+  aliases:
+    remote: '${project.machine_name}.prod'
+    local: self
+    ci: self
+  default_alias: '${drush.aliases.local}'
+modules:
+  local:
+    enable: {  }
+    uninstall: {  }
+  ci:
+    enable: {  }
+    uninstall: [shield, seckit]
+  dev:
+    enable: [shield, shield]
+    uninstall: {  }
+  test:
+    enable: [shield, shield]
+    uninstall: {  }
+  prod:
+    enable: {  }
+    uninstall: {  }
+cm:
+  strategy: config-split
+vm:
+  strategy: docker-compose
+#setup:
+#  strategy: import
+#  dump-file: ../sql/site.sql
+target-hooks: null

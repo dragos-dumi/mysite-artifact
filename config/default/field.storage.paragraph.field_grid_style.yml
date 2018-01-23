@@ -1,0 +1,33 @@
+uuid: 60fda2ca-331b-4946-92d2-372c2e587a12
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_grid_style
+field_name: field_grid_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1_1'
+      label: '50% * 2'
+    -
+      value: '1_3'
+      label: '25% - 75%'
+    -
+      value: '3_1'
+      label: '75% - 25%'
+    -
+      value: '2_2'
+      label: '25%  * 4'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

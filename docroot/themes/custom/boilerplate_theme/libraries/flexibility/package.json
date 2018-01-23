@@ -1,0 +1,125 @@
+{
+  "_args": [
+    [
+      "flexibility@2.0.1",
+      "/home/dragosd/work/site/www/docroot/themes/custom/boilerplate_theme"
+    ]
+  ],
+  "_from": "flexibility@2.0.1",
+  "_id": "flexibility@2.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-rTI6r8QPRpzmJChlGPxNfNcrfHc=",
+  "_location": "/flexibility",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "flexibility@2.0.1",
+    "name": "flexibility",
+    "escapedName": "flexibility",
+    "rawSpec": "2.0.1",
+    "saveSpec": null,
+    "fetchSpec": "2.0.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/flexibility/-/flexibility-2.0.1.tgz",
+  "_spec": "2.0.1",
+  "_where": "/home/dragosd/work/site/www/docroot/themes/custom/boilerplate_theme",
+  "author": {
+    "name": "Jonathan Neal",
+    "email": "jonathantneal@hotmail.com",
+    "url": "http://jonathantneal.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jonathantneal/flexibility/issues"
+  },
+  "dependencies": {},
+  "description": "A JavaScript polyfill for Flexbox",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "browserify": "^13.0.1",
+    "eslint": "^2.13.1",
+    "eslint-config-10up": "github:jonathantneal/eslint-config-10up",
+    "jscs": "^3.0.5",
+    "jscs-config-10up": "github:jonathantneal/jscs-config-10up",
+    "npm-watch": "^0.1.4",
+    "uglify-js": "^2.6.4"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "eslintConfig": {
+    "extends": "10up"
+  },
+  "files": [
+    "LICENSE.md",
+    "flexibility.js"
+  ],
+  "homepage": "https://github.com/jonathantneal/flexibility#readme",
+  "jscsConfig": {
+    "preset": "10up"
+  },
+  "keywords": [
+    "flex",
+    "display",
+    "direction",
+    "wrap",
+    "flow",
+    "justify",
+    "content",
+    "align",
+    "items",
+    "content",
+    "order",
+    "grow",
+    "shrink",
+    "basis",
+    "self",
+    "auto",
+    "start",
+    "end",
+    "center",
+    "baseline",
+    "stretch",
+    "space",
+    "between",
+    "around",
+    "polyfill",
+    "ie",
+    "internet",
+    "explorer",
+    "layout"
+  ],
+  "license": "MIT",
+  "main": "flexibility.js",
+  "name": "flexibility",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathantneal/flexibility.git"
+  },
+  "scripts": {
+    "build": "npm run compile && npm run compress",
+    "compile": "browserify lib/index.js --standalone flexibility --outfile flexibility.js",
+    "compile-w-map": "browserify lib/index.js --debug --standalone flexibility --outfile flexibility.js",
+    "compress": "uglifyjs flexibility.js --compress --mangle --output flexibility.js",
+    "compress-w-map": "uglifyjs flexibility.js --compress --mangle --source-map flexibility.js.map --output flexibility.js",
+    "eslint": "eslint ./lib/",
+    "jscs": "jscs ./lib/",
+    "prepublish": "npm run build",
+    "test": "npm run jscs",
+    "watch": "npm-watch"
+  },
+  "version": "2.0.1",
+  "watch": {
+    "compile-w-map": {
+      "patterns": [
+        "lib",
+        "test"
+      ],
+      "extensions": "js",
+      "quiet": "true"
+    }
+  }
+}

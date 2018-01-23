@@ -1,0 +1,7 @@
+spamspan.test:
+  path: 'admin/config/content/formats/spamspan'
+  defaults:
+    _form: 'Drupal\spamspan\Form\SpamSpanTestForm'
+    _title: 'Spamspan test page'
+  requirements:
+    _permission: 'administer filters'

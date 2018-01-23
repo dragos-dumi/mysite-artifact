@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for node_presave().
+ */
+function custom_events_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->bundle() == 'event') {
+    // Auto set start date to authoring date since this is used sort views.
+    if (!empty($entity->field_dates->value)) {
+      $entity->created = strtotime($entity->field_dates->value);
+    }
+  }
+}

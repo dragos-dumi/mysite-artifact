@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * @file
+ * Create sort options for search queries executed via the Search API.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\search_api\Query\QueryInterface;
+
+/**
+ * Implements hook_help().
+ */
+function search_api_sorts_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'entity.search_api_index.sorts':
+      return t('Select the display you would like to manage sort fields for. A display is one instance where this index can be shown, e.g. a views page using this index.');
+    case 'search_api_sorts.search_api_display.sorts':
+      $block_admin_url = \Drupal::url('block.admin_display');
+      return t('Select the indexed fields for which you want to enable sorting for this display. Before the sort blocks is actually displayed, you will have to enable and configure it at the <a href=":url">block administration page</a>.', [':url' => $block_admin_url]);
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function search_api_sorts_entity_type_alter(array &$entity_types) {
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  if (isset($entity_types['search_api_index'])) {
+    $entity_types['search_api_index']->setFormClass('sorts', '\Drupal\search_api_sorts\Form\IndexSortsForm');
+    $entity_types['search_api_index']->setLinkTemplate('sorts', $entity_types['search_api_index']->getLinkTemplate('canonical') . '/sorts');
+  }
+}
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function search_api_sorts_entity_operation_alter(&$operations, EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'search_api_index') {
+    $operations['sorts'] = [
+      'title' => t('Sorts'),
+      'weight' => 50,
+      'url' => $entity->toUrl('sorts'),
+    ];
+  }
+}
+
+/**
+ * Implements of hook_search_api_query_alter.
+ */
+function search_api_sorts_search_api_query_alter(QueryInterface &$query) {
+  $display = $query->getDisplayPlugin();
+
+  if (!$display) {
+    // Display for current search page not implemented. To fix this, implement
+    // the search api display plugin. See ViewsPageDisplay.php for an example.
+    return;
+  }
+
+  /** @var \Drupal\search_api_sorts\SearchApiSortsManagerInterface $search_api_sorts_manager */
+  $search_api_sorts_manager = \Drupal::service('search_api_sorts.manager');
+
+  $active_sort = $search_api_sorts_manager->getActiveSort($display);
+  $field = $active_sort->getFieldName();
+  $order = $active_sort->getOrder();
+  if (is_null($active_sort->getFieldName())) {
+    // If no field provided, use default field and default order.
+    $default_sort = $search_api_sorts_manager->getDefaultSort($display);
+    $field = $default_sort->getFieldName();
+    $order = $default_sort->getOrder();
+  }
+
+  $query->sort($field, $order);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function search_api_sorts_theme() {
+  $themes['search_api_sorts_sort'] = [
+    'variables' => [
+      'label' => '',
+      'url' => '',
+      'order' => '',
+      'active' => FALSE,
+      'order_indicator' => '',
+      'sort_field' => '',
+    ],
+  ];
+
+  return $themes;
+}

@@ -1,0 +1,18 @@
+uuid: 4c13494d-1b10-4fc3-b834-b0d39257f2b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_is_un_country
+field_name: field_is_un_country
+entity_type: taxonomy_term
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

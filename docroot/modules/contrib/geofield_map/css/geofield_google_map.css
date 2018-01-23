@@ -1,0 +1,46 @@
+/**
+ * Issue #1966296: Info tooltip styling is broken for GeofieldMap
+ */
+/* line 4, ../sass/geofield_google_map.scss */
+.geofield-google-map img {
+  max-width: none;
+}
+
+/* line 10, ../sass/geofield_google_map.scss */
+.gm-style-iw {
+  max-width: 220px;
+}
+/* line 12, ../sass/geofield_google_map.scss */
+.gm-style-iw img {
+  padding: 4px;
+}
+/* line 15, ../sass/geofield_google_map.scss */
+.gm-style-iw h1 {
+  font-size: 22px;
+  margin: 10px 0 6px 0;
+}
+/* line 19, ../sass/geofield_google_map.scss */
+.gm-style-iw h2 {
+  font-size: 18px;
+  margin: 8px 0 6px 0;
+}
+/* line 23, ../sass/geofield_google_map.scss */
+.gm-style-iw h3 {
+  font-size: 16px;
+  margin: 6px 0 4px 0;
+}
+/* line 27, ../sass/geofield_google_map.scss */
+.gm-style-iw h4 {
+  font-size: 14px;
+  margin: 4px 0 4px 0;
+}
+/* line 31, ../sass/geofield_google_map.scss */
+.gm-style-iw p:first-child,
+.gm-style-iw div:first-child,
+.gm-style-iw .field:first-child {
+  padding: 2px 0;
+}
+/* line 34, ../sass/geofield_google_map.scss */
+.gm-style-iw .geofield-google-map {
+  display: none;
+}

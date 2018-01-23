@@ -1,0 +1,5 @@
+display_field_copy.add:
+  route_name: display_field_copy.add
+  title: 'Create a copy of a field'
+  appears_on:
+    - ds.fields_list

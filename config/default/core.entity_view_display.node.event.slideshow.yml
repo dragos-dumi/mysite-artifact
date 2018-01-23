@@ -1,0 +1,159 @@
+uuid: 38216daf-acec-4502-83c9-79a88dd54c50
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.slideshow
+    - field.field.node.event.body
+    - field.field.node.event.field_countries
+    - field.field.node.event.field_dates
+    - field.field.node.event.field_event_address
+    - field.field.node.event.field_geolocation
+    - field.field.node.event.field_image
+    - field.field.node.event.field_images
+    - field.field.node.event.field_in_slideshow
+    - field.field.node.event.field_url
+    - node.type.event
+  module:
+    - blazy
+    - datetime_range
+    - ds
+    - panelizer
+    - smart_trim
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+  ds:
+    layout:
+      id: boilerplate_slideshow_item
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      media:
+        - field_image
+      caption:
+        - node_title
+        - field_dates
+        - body
+        - node_link
+    fields:
+      node_link:
+        plugin_id: node_link
+        weight: 4
+        label: hidden
+        formatter: default
+        settings:
+          'link text': 'Read more'
+          'link class': 'btn btn-sm more'
+          wrapper: ''
+          class: ''
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h2
+          class: ''
+id: node.event.slideshow
+targetEntityType: node
+bundle: event
+mode: slideshow
+content:
+  body:
+    label: hidden
+    type: smart_trim
+    weight: 3
+    settings:
+      trim_length: '300'
+      trim_type: chars
+      trim_suffix: …
+      more_link: '0'
+      more_text: 'Read more'
+      summary_handler: trim
+      trim_options:
+        text: text
+      more_class: more-link
+    third_party_settings: {  }
+    region: caption
+  field_dates:
+    type: daterange_default
+    weight: 2
+    region: caption
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: d_m_y_h_m
+      separator: '-'
+    third_party_settings: {  }
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: slideshow
+      thumbnail_style: ''
+      media_switch: ''
+      box_style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      ratio: ''
+      sizes: ''
+      breakpoints:
+        xs:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        sm:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        md:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        lg:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        xl:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+      current_view_mode: slideshow
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      optionset: default
+      skin: ''
+      style: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings: {  }
+    type: blazy
+    region: media
+hidden:
+  field_countries: true
+  field_event_address: true
+  field_geolocation: true
+  field_images: true
+  field_in_slideshow: true
+  field_url: true
+  langcode: true
+  links: true

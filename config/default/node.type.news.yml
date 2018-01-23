@@ -1,0 +1,17 @@
+uuid: 6b46d9fc-88b5-4a25-86c4-4a17d9d70f9b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: News
+type: news
+description: 'Use news for time-sensitive content like news, press releases, alerts etc.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

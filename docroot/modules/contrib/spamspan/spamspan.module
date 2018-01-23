@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * This module implements the spamspan technique (http://www.spamspan.com ) for hiding email addresses from spambots.
+ *
+ * If javascript is disabled on the client-side, addresses appear as
+ * example [at] example [dot] com.
+ *
+ * @author Lawrence Akka
+ * @copyright 2006-2010, Lawrence Akka
+ * @license http://www.gnu.org/licenses/gpl.txt  GPL v 2.0
+ *
+ */
+
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+
+/**
+ * Implements hook_help().
+ */
+function spamspan_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.spamspan':
+      return t('<p>The SpamSpan module obfuscates email addresses to help prevent spambots from collecting them. See the <a href="@url">Spamspan test page</a>.</p>', array('@url' => Drupal::url('spamspan.test')));
+  }
+}
+
+
+
+/**
+ * A simple utility function wrapping the main processing callback.
+ * This function may be called by other modules and themes.
+ *
+ * @param $text
+ *  Text, maybe containing email addresses.
+ * @param $settings
+ * An associative array of settings to be applied.
+ * @return
+ *  The input text with emails replaced by spans
+ */
+function spamspan($text = '', $settings = []) {
+  $plugin_manager = \Drupal::service('plugin.manager.filter');
+
+  $configuration = $plugin_manager->getDefinition('filter_spamspan');
+  $configuration['settings'] = $settings + $configuration['settings'];
+
+  $filter = $plugin_manager->createInstance('filter_spamspan', $configuration);
+
+  return $filter->process($text, NULL)->getProcessedText();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function spamspan_theme($existing, $type, $theme, $path) {
+  return array(
+    'spamspan_at_sign' => array(
+      'variables' => array(
+        // path to '@' image file
+        'path' => base_path() . drupal_get_path('module', 'spamspan') . '/image.gif',
+        // the spamspan filter settings if anyone needs them
+        'settings' => array(),
+      ),
+    ),
+  );
+}

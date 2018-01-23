@@ -1,0 +1,6 @@
+ser: visitor
+pass: default-password
+print: ''
+allow_cli: true
+_core:
+  default_config_hash: x8SBz0HYCE0Chvb4_trXiGtZ3EWsy-Jcc87XTmCvirM

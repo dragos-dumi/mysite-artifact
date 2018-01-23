@@ -1,0 +1,80 @@
+leaflet:
+  remote: http://leafletjs.com/
+  version: 1.0.3
+  license:
+    name: Leaflet-License
+    url: https://github.com/Leaflet/Leaflet/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    https://unpkg.com/leaflet@1.0.3/dist/leaflet.js: {}
+  css:
+    component:
+      https://unpkg.com/leaflet@1.0.3/dist/leaflet.css: {}
+
+geofield_map_general:
+  version: 1.x
+  css:
+    component:
+      css/geofield_map_general.css: {}
+
+geofield_map_widget:
+  version: 1.x
+  css:
+    component:
+      css/geofield_map_widget.css: {}
+  js:
+    js/geofield_map.js: {}
+  dependencies:
+      - core/underscore
+      - core/jquery
+      - core/jquery.once
+      - core/drupal
+      - core/drupalSettings
+      - core/drupal.autocomplete
+
+geolocation:
+  version: 1.x
+  js:
+    js/geolocation.js: {}
+
+geofield_gmap:
+  version: 1.x
+  css:
+    component:
+      css/geofield_google_map.css: {}
+  js:
+    js/geofield_google_map.js: {}
+  dependencies:
+      - core/underscore
+      - core/jquery
+      - core/jquery.once
+      - core/drupal
+      - core/drupalSettings
+
+geojson:
+  version: 1.x
+  js:
+    js/geojson.js: {}
+
+
+# External Marker Clusterer
+marker_cluster:
+  remote: https://github.com/googlemaps/js-marker-clusterer
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://github.com/googlemaps/js-marker-clusterer/blob/gh-pages/LICENSE
+    gpl-compatible: true
+  js:
+    https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js: { type: external }
+
+# External OverlappingMarkerSpiderfier
+overlappingmarkerspiderfier:
+  remote: https://github.com/jawj/OverlappingMarkerSpiderfier
+  version: 1.x
+  license:
+    name: MIT licence
+    url: http://www.opensource.org/licenses/mit-license.php
+    gpl-compatible: true
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js: { type: external }

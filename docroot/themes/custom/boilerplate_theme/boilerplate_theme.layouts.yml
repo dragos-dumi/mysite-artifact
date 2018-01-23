@@ -1,0 +1,56 @@
+boilerplate_item_8_4:
+  label: Full item 8-4
+  category: Boilerplate
+  type: partial
+  template: templates/layouts/boilerplate-item-8-4
+  regions:
+    right:
+      label: Right
+    left:
+      label: Left
+
+boilerplate_teaser_3_9:
+  label: Teaser 3-9
+  category: Boilerplate
+  type: partial
+  template: templates/layouts/boilerplate-teaser-3-9
+  regions:
+    right:
+      label: Right
+    left:
+      label: Left
+
+boilerplate_teaser_9_3:
+  label: Teaser 9-3
+  category: Boilerplate
+  type: partial
+  template: templates/layouts/boilerplate-teaser-9-3
+  regions:
+    right:
+      label: Right
+    left:
+      label: Left
+
+boilerplate_homepage:
+  label: Homepage
+  category: Boilerplate
+  type: partial
+  template: templates/layouts/homepage
+  regions:
+    slideshow:
+      label: Slideshow
+    right:
+      label: Right 1
+    left:
+      label: Left 1
+
+boilerplate_slideshow_item:
+  label: Slideshow item
+  category: Boilerplate
+  type: partial
+  template: templates/layouts/boilerplate-slideshow-item
+  regions:
+    media:
+      label: Media
+    caption:
+      label: Captions

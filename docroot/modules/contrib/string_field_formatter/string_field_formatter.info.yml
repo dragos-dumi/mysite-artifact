@@ -1,0 +1,6 @@
+name: String field formatter
+type: module
+description: Adds formatters to plain string type field
+core: 8.x
+dependencies:
+  - text

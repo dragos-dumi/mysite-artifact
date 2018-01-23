@@ -1,0 +1,40 @@
+schemas:
+  bootstrap: 8000
+  boilerplate_theme: 8000
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: ''
+  url: 'http://boilerplate.local/themes/contrib/bootstrap/favicon.ico'
+  use_default: 1
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: 1
+  node_user_picture: 1
+logo:
+  path: ''
+  url: ''
+  use_default: 1
+cdn_provider: ''
+region_wells:
+  admin_shortcuts: ''
+  top_bar: ''
+  branding: ''
+  search_box: ''
+  navigation_collapsible: ''
+  sidebar_first: ''
+  help: ''
+  content: ''
+  content_bottom: ''
+  sidebar_second: well
+  footer_col_1: ''
+  footer_col_2: ''
+  footer_col_3: ''
+  footer_col_4: ''
+  footer2_col_1: ''
+  footer2_col_2: ''
+  footer2_col_3: ''
+  footer2_col_4: ''
+  footer: ''
+table_responsive: '-1'
+table: ''

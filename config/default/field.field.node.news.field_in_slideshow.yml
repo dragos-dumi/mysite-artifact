@@ -1,0 +1,23 @@
+uuid: a73a4d2f-f973-4eb3-82ad-103d61dc2753
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_in_slideshow
+    - node.type.news
+id: node.news.field_in_slideshow
+field_name: field_in_slideshow
+entity_type: node
+bundle: news
+label: 'Show in slideshow'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

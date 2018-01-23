@@ -1,0 +1,27 @@
+uuid: 3eee1269-f8de-42f4-a61a-102a58df2127
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.quick-links
+  module:
+    - menu_block
+  theme:
+    - boilerplate_theme
+id: boilerplate_theme_quicklinks
+theme: boilerplate_theme
+region: footer_col_1
+weight: -6
+provider: null
+plugin: 'menu_block:quick-links'
+settings:
+  id: 'menu_block:quick-links'
+  label: 'Quick links'
+  provider: menu_block
+  label_display: visible
+  level: 1
+  depth: 0
+  expand: 0
+  parent: 'quick-links:'
+  suggestion: quick_links
+visibility: {  }

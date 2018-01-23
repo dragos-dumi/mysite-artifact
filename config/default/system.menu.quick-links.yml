@@ -1,0 +1,8 @@
+uuid: ad25bcfe-18a4-4f84-a26e-1d8e7e70a6b6
+langcode: en
+status: true
+dependencies: {  }
+id: quick-links
+label: 'Quick links'
+description: 'footer menu'
+locked: false

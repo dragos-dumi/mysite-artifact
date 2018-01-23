@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function boilerplate_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    if (is_string($node)) {
+      $node = \Drupal\node\Entity\Node::load($node);
+    }
+    if (is_object($node)) {
+      $content_type = $node->bundle();
+      $suggestions[] = 'page__' . $content_type;
+    }
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function boilerplate_theme_preprocess_block(&$variables) {
+  switch ($variables['base_plugin_id']) {
+    case 'system_branding_block':
+      $variables['site_logo'] = '';
+      if ($variables['content']['site_logo']['#access'] && $variables['content']['site_logo']['#uri']) {
+        $variables['site_logo'] = str_replace('.svg', '.png', $variables['content']['site_logo']['#uri']);
+      }
+      break;
+
+  }
+
+  if (isset($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
+    $block = \Drupal\block\Entity\Block::load($block_id);
+
+    if ($block) {
+      $block_region = $block->getRegion();
+      $variables['content']['#attributes']['data-block_id'] = $block_id;
+      $variables['content']['#attributes']['data-region'] = $block_region;
+      $variables['content']['#attributes']['class'][] = 'block-' . $block_id;
+      $variables['content']['#attributes']['class'][] = 'block-' . $block_id . '--region-' . $block_region;
+    }
+  }
+}
+
+function boilerplate_theme_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+    if (isset($variables['attributes']['data-region']) && isset($variables['attributes']['data-block_id'])) {
+      $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['attributes']['data-block_id'] . '__' . $variables['attributes']['data-region'];
+    }
+}
+
+/**
+ * Implements hook_preprocess_image().
+ */
+function boilerplate_theme_preprocess_image(&$variables) {
+  // Some images should show title as caption.
+  // The use-title-caption attributes is a common flag for this.
+  // see preprocess_field to check where it is set.
+  if (!empty($variables['attributes']['use-title-caption'])) {
+    unset($variables['attributes']['use-title-caption']);
+    $variables['use_title_caption'] = TRUE;
+  }
+}
+
+function boilerplate_theme_preprocess_form_element(&$variables) {
+  if (!empty($variables['name']) && $variables['name'] == 'lang_dropdown_select') {
+    $id = $variables['element']['#attributes']['id'];
+    $variables['label']['#id'] = $id;
+  }
+}
+
+function boilerplate_theme_preprocess_field(&$variables) {
+  switch ($variables['field_name']) {
+    case 'field_html':
+      if ($variables['element']['#object']->bundle() == 'content_html') {
+        /* @var \Drupal\paragraphs\Entity\Paragraph */
+        $paragraph = $variables['element']['#object'];
+        $col_no = [12, 12];
+        if (!empty($paragraph->field_grid_style->value)) {
+          $ratios = explode('_', $paragraph->field_grid_style->value);
+          $col = 12 / array_sum($ratios);
+          foreach ($ratios as $idx => $val) {
+            $col_no[$idx] = $col * $val;
+          }
+        }
+        $variables['column_numbers'] = $col_no;
+      }
+      break;
+  }
+}

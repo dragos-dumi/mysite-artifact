@@ -1,0 +1,10 @@
+title: Contact
+settings:
+  confirmation_message: 'Votre message a été envoyé.'
+handlers:
+  email_confirmation:
+    label: 'Courriel de confirmation'
+    settings:
+      from_name: défaut
+  email_notification:
+    label: 'Notification par courriel'

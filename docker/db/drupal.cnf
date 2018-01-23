@@ -1,0 +1,80 @@
+[mysqld]
+
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+#log_bin=
+
+character-set-server=utf8
+bind-address = 0.0.0.0
+wait_timeout=10800
+net_read_timeout = 7200
+net_write_timeout = 7200
+
+## Security
+# safe-user-create prevents autocreating users with the GRANT statement
+# unless the user has the insert privilege on mysql.user
+safe-user-create = 1
+
+# explicit_defaults_for_timestamp=TRUE
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+# By default, MyISAM tables will INSERT into deleted row space before
+# appending to the end of the disk. In exchange for saving this trivial
+# amount of space, once a row gets deleted, only one insert operation
+# may occur at a time until holes are filled. Setting concurrent_insert
+# to 2 stops this silly behavior, at the cost of wasting a bit of disk
+# space, for a significant performance improvement in MyISAM tables.
+# Drupal 7 shouldn't be using MyISAM.
+concurrent_insert = 2
+
+myisam_sort_buffer_size=16M
+table_definition_cache=4096
+table_open_cache=16384
+
+thread_cache_size = 128
+
+max_connections = 256
+open_files_limit = 65535
+
+key_buffer_size=8M
+key_cache_block_size=4K
+
+sort_buffer_size=3M
+read_buffer_size=2M
+read_rnd_buffer_size=32M
+join_buffer_size=8M
+
+bulk_insert_buffer_size=512M
+
+query_cache_type = 1
+
+tmp_table_size=64M
+max_heap_table_size=64M
+query_cache_size=32M
+query_cache_limit=6M
+
+max_allowed_packet=512M
+
+# innodb
+innodb_thread_concurrency=0
+innodb_strict_mode=1
+innodb_log_file_size=64M
+innodb_log_buffer_size=4M
+innodb_buffer_pool_size=1024M
+innodb_flush_log_at_trx_commit = 0
+innodb_lock_wait_timeout = 3600
+innodb_buffer_pool_instances = 4
+innodb_log_files_in_group = 2
+innodb_support_xa=0
+
+# Logging
+slow_query_log=1
+slow_query_log_file=/tmp/mysql-slow.log
+long_query_time=5
+log_queries_not_using_indexes=1
+
+# Log all queries
+general_log_file=/tmp/mysql-statements.log
+general_log=0
+
+

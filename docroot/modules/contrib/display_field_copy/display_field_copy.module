@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Contains display_field_copy.module.
+ */
+
+/**
+ * Implements hook_theme_registry_alter().
+ *
+ * Shift the preprocess to the top to make it easier to move items.
+ */
+function display_field_copy_theme_registry_alter(&$theme_registry) {
+  array_unshift($theme_registry['field']['preprocess functions'], 'display_field_copy_field');
+
+  foreach ($theme_registry as $hook => $theme) {
+    if (isset($theme['base hook']) && $theme['base hook'] == 'field') {
+      array_unshift($theme_registry[$hook]['preprocess functions'], 'display_field_copy_field');
+    }
+  }
+}
+
+/**
+ * Field Preprocess Callback.
+ *
+ * Move the items into the proper place and set is_multiple to TRUE.
+ */
+function display_field_copy_field(array &$variables) {
+  $element = &$variables['element'];
+
+  $field_type = $element['#field_type'];
+  if ($field_type != 'ds') {
+    return;
+  }
+
+  $field_name = $element['#field_name'];
+  if (!strpos($field_name, ':')) {
+    return;
+  }
+
+  $pieces = explode(':', $field_name);
+  if ($pieces[0] != 'display_field_copy') {
+    return;
+  }
+
+  $items = $element[0][0];
+  unset($element[0]);
+
+  $element = array_merge($element, $items);
+
+  if (count($items) > 1) {
+    $element['#is_multiple'] = TRUE;
+  }
+}

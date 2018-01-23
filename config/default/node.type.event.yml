@@ -1,0 +1,17 @@
+uuid: 8e5fb236-ad19-4ce2-aa56-6955a263a557
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Event
+type: event
+description: 'Use an event to describe an event (meeting, workshop, conference, etc.)'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

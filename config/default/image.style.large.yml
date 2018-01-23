@@ -1,0 +1,25 @@
+uuid: 11896a5b-5e01-4096-ad86-4e42f908de00
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+_core:
+  default_config_hash: J2n0RpFzS0-bgSyxjs6rSdgxB1rb-bTAgqywNx_964M
+name: large
+label: 'Large (480×480) (with Free crop)'
+effects:
+  ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d:
+    uuid: ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d
+    id: image_scale
+    weight: -9
+    data:
+      width: 480
+      height: 480
+      upscale: false
+  3d69fd0e-4bed-4c09-a275-a792019575e1:
+    uuid: 3d69fd0e-4bed-4c09-a275-a792019575e1
+    id: crop_crop
+    weight: -10
+    data:
+      crop_type: free_crop

@@ -1,0 +1,20 @@
+uuid: 3fe08f85-ac9a-4ef0-a4af-85c4c5c55d39
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: AeW1SEDgb1OTQACAWGhzvMknMYAJlcZu0jljfeU3oso
+name: Page
+type: article
+description: 'Use page for the static content of your website, such as the About Us page.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

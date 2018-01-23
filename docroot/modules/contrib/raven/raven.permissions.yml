@@ -1,0 +1,3 @@
+send javascript errors to sentry:
+  title: 'Send JavaScript errors to Sentry'
+  description: "For users with this permission, JavaScript errors will be captured and submitted to the Sentry server's public DSN."

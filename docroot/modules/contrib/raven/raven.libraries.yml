@@ -1,0 +1,17 @@
+raven:
+  version: 2.x
+  js:
+    js/raven.js: {}
+  dependencies:
+    - raven/raven-js
+    - core/drupalSettings
+
+raven-js:
+  remote: https://github.com/getsentry/raven-js
+  version: 3.x
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/getsentry/raven-js/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    js/raven-js/raven.min.js: { minified: true }

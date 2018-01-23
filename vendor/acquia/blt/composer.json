@@ -1,0 +1,67 @@
+{
+    "name": "acquia/blt",
+    "description": "BLT",
+    "keywords": [ "drupal", "testing", "deployment", "automation", "template" ],
+    "authors": [
+        {
+            "name": "Matthew Grasmick"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/acquia/blt/issues",
+        "docs": "http://blt.readthedocs.io/en/stable"
+    },
+    "type": "composer-plugin",
+    "license": "GPL-2.0",
+    "require": {
+        "cweagans/composer-patches":        "^1.6.4",
+        "asm89/twig-lint":                  "^1.0.2",
+        "composer/installers":              "^1.2.0",
+        "composer-plugin-api":              "^1.0.0",
+        "doctrine/common":                  "^2.5",
+        "doctrine/inflector":               "~1.1.0",
+        "oomphinc/composer-installers-extender": "^1.1",
+        "dflydev/dot-access-data":          "^1.1.0",
+        "drupal/coder":                     "^8.2.11",
+        "drush/drush":                      "^8.1.15",
+        "grasmash/drupal-security-warning": "^1.0.0",
+        "grasmash/yaml-cli":                "^1.0.0",
+        "grasmash/yaml-expander":           "^1.0.5",
+        "php":                              ">=5.6",
+        "phpunit/phpunit":                  "^4.8",
+        "squizlabs/php_codesniffer":        "^2.7",
+        "symfony/yaml":                     "^2.7|~3.2.8",
+        "symfony/console":                  "^2.7|~3.2.8",
+        "wikimedia/composer-merge-plugin":  "^1.4.1",
+        "consolidation/robo":               "^1.1.0",
+        "consolidation/config":             "^1.0.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.0",
+        "tivie/php-os-detector": "^1.0",
+        "composer/semver": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Acquia\\Blt\\": "src/",
+            "Acquia\\Blt\\Tests\\": "tests/phpunit/src/",
+            "Acquia\\Blt\\Tests\\Robo\\": "tests/phpunit/Robo/"
+        }
+    },
+    "extra": {
+        "class": "Acquia\\Blt\\Composer\\Plugin"
+    },
+    "bin": [
+        "bin/blt"
+    ],
+    "conflict": {
+        "drupal/core": "7.*"
+    },
+    "suggest": {
+        "hirak/prestissimo": "^0.3",
+        "typhonius/acquia_cli": "^0.0.7"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "guzzlehttp/guzzle": "^6.2"
+    }
+}

@@ -1,0 +1,36 @@
+uuid: e535d8f3-be46-4f22-bc96-982cb11655a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_html.field_grid_style
+    - field.field.paragraph.content_html.field_html
+    - paragraphs.paragraphs_type.content_html
+  module:
+    - text
+id: paragraph.content_html.default
+targetEntityType: paragraph
+bundle: content_html
+mode: default
+content:
+  field_grid_style:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_html:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  translation:
+    weight: 10
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

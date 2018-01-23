@@ -1,0 +1,294 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\file\Entity\File;
+
+/**
+* Implements hook_help().
+*/
+function inline_responsive_images_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.inline_responsive_images':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The <a target="_blank" href="https://www.drupal.org/project/inline_responsive_images">Inline responsive images</a> Inserting an image in the text editor dialog today allows the user to fiddle with image dimensions. It does not even have aspect ratio locking.') . '</p>';
+      $output .= '<p>' . t('Its not great for the authoring experience nor for structured content reasons that users are defining the specific dimensions of every single image they insert. It wouldd be much better to allow them to choose from image styles — just like we do for image fields.') . '</p>';
+      $output .= '<p>' . t('This module lets users select a responsive style OR a image style to place images in the content.') . '</p>';
+      $output .= '<h4>' . t('Configuration') . '</h4>';
+      $output .= '<dl>';
+      $output .= '<dd>' . t('The module has no menu or modifiable settings.') . '</dd>';
+      $output .= '<dd>' . t('Enable the text format filter \'Display responsive images\' or \'Display image styles\' and select the images styles/responsive styles that you want to be available to the user.') . '</dd>';
+      $output .= '<dd>' . t('When the module is enabled, create new content. In the editor, click on the image icon in the toolbar. A popup will open where the user can upload an image and assign an image style or responsive style by selecting style from the dropdown menu.') . '</dd>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for EditorImageDialog.
+ *
+ * Alters the image dialog form for text editor, to allow the user to select an
+ * image style.
+ *
+ * @see \Drupal\editor\Form\EditorImageDialog::buildForm()
+ */
+function inline_responsive_images_form_editor_image_dialog_alter(&$form, FormStateInterface $form_state) {
+
+  $editor = $form_state->getBuildInfo()['args'][0];
+  $filter_format = $editor->getFilterFormat();
+  $filters = $filter_format->filters()->getAll();
+
+  $image_element = $form_state->getStorage()['image_element'];
+
+  // When image style functionality is available, disallow the user from
+  // specifying the dimensions manually, only allow image styles to be picked.
+  if (isset($filters['filter_imagestyle']) && $filters['filter_imagestyle']->status) {
+    // Hide the default width/height form items.
+    $form['dimensions']['#access'] = FALSE;
+
+    $form['image_style'] = array(
+      '#type' => 'item',
+    );
+
+    $image_options = array();
+    $image_styles = \Drupal::entityTypeManager()->getStorage('image_style')->loadMultiple();
+
+    if ($image_styles && !empty($image_styles)) {
+      foreach ($image_styles as $image_style_id => $image_style) {
+        if($filters['filter_imagestyle']->settings['image_style_'.$image_style_id]) {
+          $image_options[$image_style_id] = $image_style->label();
+        }
+      }
+    }
+
+    $image_style_fallback_default = !empty($image_options) ? reset($image_options) : NULL;
+    $form['image_style']['selection'] = array(
+      '#title' => t('Image style'),
+      '#type' => 'select',
+      '#default_value' => isset($image_element['data-image-style']) ? $image_element['data-image-style'] : $image_style_fallback_default,
+      '#options' => $image_options,
+      '#required' => TRUE,
+      '#wrapper_attributes' => array('class' => array('container-inline')),
+      '#attributes' => array('class' => array('container-inline')),
+      '#parents' => array('attributes', 'data-image-style'),
+    );
+    $form['image_style']['preview_toggle'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Show preview'),
+    );
+    $image_styles = \Drupal::entityTypeManager()->getStorage('image_style')->loadMultiple();
+    foreach ($image_styles as $id => $image_style) {
+      $preview_arguments = array(
+        '#theme' => 'image_style_preview',
+        '#style' => $image_style,
+      );
+      $form['image_style']['preview_' . $id] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Preview of %image-style image style', array('%image-style' => $image_style->label())),
+        '#markup' => \Drupal::service('renderer')->render($preview_arguments),
+        '#states' => array(
+          'visible' => array(
+            ':input[name="image_style[preview_toggle]"]' => array('checked' => TRUE),
+            ':input[name="attributes[data-image-style]"]' => array('value' => $id),
+          ),
+        ),
+      );
+    }
+
+    $form['#attached']['library'][] = 'image/admin';
+    $form['actions']['save_modal']['#validate'][] = 'inline_responsive_images_form_editor_image_dialog_imagestyle_validate';
+  }
+
+  // When responsive image functionality is available, disallow the user from
+  // specifying the dimensions manually, and from selecting an image style, only
+  // allowing a responsive image style to be selected.
+  if (isset($filters['filter_responsive_image_style']) && $filters['filter_responsive_image_style']->status) {
+
+    // Hide the default width/height form items.
+    $form['dimensions']['#access'] = FALSE;
+
+    // Remove the image style selection, if it exists; it does not make sense to
+    // use FilterImageStyle when already using FilterPictureMapping!
+    if (isset($form['image_style'])) {
+      unset($form['image_style']);
+      // Remove its #validate callback as well.
+      $validators = &$form['actions']['save_modal']['#validate'];
+      $index = array_search('image_form_editor_image_dialog_validate', $validators);
+      if ($index !== FALSE) {
+        unset($validators[$index]);
+      }
+    }
+
+    $form['responsive_image_style'] = array(
+      '#type' => 'item',
+    );
+    $responsive_image_options = array();
+    $responsive_image_styles = \Drupal::entityTypeManager()->getStorage('responsive_image_style')->loadMultiple();
+
+    if ($responsive_image_styles && !empty($responsive_image_styles)) {
+      foreach ($responsive_image_styles as $responsive_image_style_id => $responsive_image_style) {
+        if ($responsive_image_style->hasImageStyleMappings()) {
+          if($filters['filter_responsive_image_style']->settings['responsive_style_' . $responsive_image_style_id]) {
+            $responsive_image_options[$responsive_image_style_id] = $responsive_image_style->label();
+          }
+        }
+      }
+    }
+
+    $form['responsive_image_style']['selection'] = array(
+      '#title' => t('Responsive image style'),
+      '#type' => 'select',
+      '#default_value' => isset($image_element['data-responsive-image-style']) ? $image_element['data-responsive-image-style'] : key($responsive_image_options),
+      '#options' => $responsive_image_options,
+      '#required' => TRUE,
+      '#wrapper_attributes' => array('class' => array('container-inline')),
+      '#attributes' => array('class' => array('container-inline')),
+      '#parents' => array('attributes', 'data-responsive-image-style'),
+    );
+
+    $form['responsive_image_style']['selection'] = array(
+      '#title' => t('Responsive image style'),
+      '#type' => 'select',
+      '#default_value' => isset($image_element['data-responsive-image-style']) ? $image_element['data-responsive-image-style'] : key($responsive_image_options),
+      '#options' => $responsive_image_options,
+      '#required' => TRUE,
+      '#wrapper_attributes' => array('class' => array('container-inline')),
+      '#attributes' => array('class' => array('container-inline')),
+      '#parents' => array('attributes', 'data-responsive-image-style'),
+    );
+    $form['responsive_image_style']['preview_toggle'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Show preview'),
+    );
+    foreach ($responsive_image_styles as $responsive_image_style_id => $responsive_image_style) {
+      if ($responsive_image_style->hasImageStyleMappings()) {
+        $form['responsive_image_style']['preview_' . $responsive_image_style_id] = array(
+          '#type' => 'fieldset',
+          '#title' => t('Preview of %responsive-image-style responsive image style', array('%responsive-image-style' => $responsive_image_style->label())),
+          '#states' => array(
+            'visible' => array(
+              ':input[name="responsive_image_style[preview_toggle]"]' => array('checked' => TRUE),
+              ':input[name="attributes[data-responsive-image-style]"]' => array('value' => $responsive_image_style_id),
+            ),
+          ),
+        );
+
+        $preview_arguments = array(
+          '#theme' => 'responsive_image',
+          '#uri' => \Drupal::config('image.settings')->get('preview_image'),
+          '#responsive_image_style_id' => $responsive_image_style_id,
+        );
+        $form['responsive_image_style']['preview_' . $responsive_image_style_id] = array(
+          '#type' => 'item',
+          '#markup' => \Drupal::service('renderer')->render($preview_arguments),
+          '#states' => array(
+            'visible' => array(
+              ':input[name="responsive_image_style[preview_toggle]"]' => array('checked' => TRUE),
+              ':input[name="attributes[data-responsive-image-style]"]' => array('value' => $responsive_image_style_id),
+            ),
+          ),
+        );
+      }
+    }
+
+    $form['actions']['save_modal']['#validate'][] = 'inline_responsive_images_form_editor_image_dialog_responsive_validate';
+  }
+}
+
+/**
+ * Form validation handler for EditorImageDialog.
+ *
+ * Ensures the image shown in the text editor matches the chosen image style.
+ *
+ * @see \Drupal\editor\Form\EditorImageDialog::buildForm()
+ * @see \Drupal\editor\Form\EditorImageDialog::validateForm()
+ * @see image_form_editor_image_dialog_alter()
+ */
+function inline_responsive_images_form_editor_image_dialog_imagestyle_validate(array &$form, FormStateInterface &$form_state) {
+  $attributes = &$form_state->getValue('attributes');
+  if (!empty($form_state->getValue('fid')[0])) {
+    $image_style = \Drupal::entityTypeManager()->getStorage('image_style')->load($attributes['data-image-style']);
+    $file = \Drupal\file\Entity\File::load($form_state->getValue('fid')[0]);
+    $uri = $file->getFileUri();
+
+    // Set the 'src' attribute to the image style URL. FilterImageStyle will
+    // look at the 'data-editor-file-uuid' attribute, not the 'src' attribute to
+    // render the appropriate output.
+    $attributes['src'] = $image_style->buildUrl($uri);
+
+    // Set the 'width' and 'height' attributes to the image style's transformed
+    // dimensions.
+    $image = \Drupal::service('image.factory')->get($uri);
+    if ($image->isValid()) {
+      $dimensions = array(
+        'width' => $image->getWidth(),
+        'height' => $image->getHeight()
+      );
+      $image_style->transformDimensions($dimensions, $attributes['src']);
+      $attributes['width'] = $dimensions['width'];
+      $attributes['height'] = $dimensions['height'];
+    }
+  }
+}
+
+function inline_responsive_images_form_editor_image_dialog_responsive_validate(array &$form, FormStateInterface &$form_state) {
+  $attributes = &$form_state->getValue('attributes');
+  if (!empty($form_state->getValue('fid')[0])) {
+    $responsive_image_style = \Drupal::entityTypeManager()->getStorage('responsive_image_style')->load($attributes['data-responsive-image-style']);
+    $file = File::load($form_state->getValue('fid')[0]);
+    $uri = $file->getFileUri();
+    // Set up original file information.
+    $image = \Drupal::service('image.factory')->get($uri);
+    if ($image->isValid()) {
+      $dimensions = [
+        'width' => $image->getWidth(),
+        'height' => $image->getHeight(),
+      ];
+    }
+    else {
+      // @todo: what if the image is not valid?
+      $dimensions = [
+        'width' => 1000,
+        'height' => 1000,
+      ];
+    }
+
+    // Select the first (i.e. smallest) breakpoint and the 1x multiplier. We
+    // choose to show the image in the editor as if it were being viewed in the
+    // narrowest viewport, so that when the user starts to edit this content
+    // again on a mobile device, it will work fine.
+    $breakpoint_machine_names = array_keys($responsive_image_style->getKeyedImageStyleMappings()['responsive_image.viewport_sizing']);
+    $image_style_mapping = $responsive_image_style->getKeyedImageStyleMappings()['responsive_image.viewport_sizing'][$breakpoint_machine_names[0]];
+
+    switch ($image_style_mapping['image_mapping_type']) {
+      case 'sizes':
+        // More than one image style can be mapped. Use the smallest one.
+        $transformed_dimensions = $dimensions;
+
+        foreach ($image_style_mapping['image_mapping']['sizes_image_styles'] as $mapped_image_style) {
+          $new_dimensions = responsive_image_get_image_dimensions($mapped_image_style, $dimensions, $uri);
+
+          if (!$transformed_dimensions || $transformed_dimensions['width'] >= $new_dimensions['width']) {
+            $image_style_name = $mapped_image_style;
+            $transformed_dimensions = $new_dimensions;
+          }
+        }
+        break;
+
+      case 'image_style':
+        $image_style_name = $image_style_mapping['image_mapping'];
+        $transformed_dimensions = responsive_image_get_image_dimensions($image_style_name, $dimensions, $uri);
+        break;
+    }
+
+    // Set the 'src' attribute to the image style URL. FilterImageStyle will
+    // look at the 'data-editor-file-uuid' attribute, not the 'src' attribute to
+    // render the appropriate output.
+    $attributes['src'] = _responsive_image_image_style_url($image_style_name, $uri);
+
+    // Set the 'width' and 'height' attributes to the image style's transformed
+    // dimensions.
+    if ($image->isValid()) {
+      $attributes['width'] = $transformed_dimensions['width'];
+      $attributes['height'] = $transformed_dimensions['height'];
+    }
+  }
+}

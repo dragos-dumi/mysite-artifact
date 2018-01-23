@@ -1,0 +1,14 @@
+ds.manage_display_field_copy_field:
+  path: admin/structure/ds/fields/display_field_copy/{field_key}
+  defaults:
+    _form: \Drupal\display_field_copy\Form\DisplayFieldCopyForm
+    _title: 'Edit a copy of a Display Suite field'
+  requirements:
+    _permission: 'admin fields'
+display_field_copy.add:
+  path: admin/structure/ds/fields/display_field_copy
+  defaults:
+    _form: \Drupal\display_field_copy\Form\DisplayFieldCopyForm
+    _title: 'Add a copy of a Display Suite field'
+  requirements:
+    _permission: 'admin fields'

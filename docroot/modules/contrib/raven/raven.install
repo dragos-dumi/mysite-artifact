@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Requirements for Raven module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function raven_requirements($phase) {
+  $requirements['raven_library']['title'] = t('Sentry PHP');
+  if (class_exists('Raven_Client')) {
+    $requirements['raven_library']['value'] = Raven_Client::VERSION;
+  }
+  else {
+    $requirements['raven_library']['description'] = t('Sentry PHP library is required by Raven module, but is not available. Install Composer Manager module and run `composer drupal-update` at the top level of your Drupal site.');
+    $requirements['raven_library']['severity'] = REQUIREMENT_ERROR;
+    $requirements['raven_library']['value'] = t('Not found');
+  }
+  $requirements['raven_curl']['title'] = t('cURL');
+  if (function_exists('curl_init')) {
+    $requirements['raven_curl']['value'] = t('Enabled');
+  }
+  else {
+    $requirements['raven_curl']['description'] = t('Raven module could not be installed because the PHP <a href=":curl_url">cURL</a> extension is not available.', [':curl_url' => 'https://php.net/manual/curl.setup.php']);
+    $requirements['raven_curl']['severity'] = REQUIREMENT_ERROR;
+    $requirements['raven_curl']['value'] = t('Not found');
+  }
+  $requirements['raven_trace']['title'] = t('Raven reflection tracing');
+  if (\Drupal::config('raven.settings')->get('trace')) {
+    $requirements['raven_trace']['description'] = t('Raven reflection tracing is enabled, which results in sensitive data being logged by Sentry.');
+    $requirements['raven_trace']['severity'] = REQUIREMENT_WARNING;
+    $requirements['raven_trace']['value'] = t('Enabled');
+  }
+  else {
+    $requirements['raven_trace']['value'] = t('Disabled');
+  }
+  return $requirements;
+}

@@ -1,0 +1,9 @@
+uuid: 1e657c0b-1321-4e1b-a7a6-73a505bda6c4
+langcode: en
+status: true
+dependencies: {  }
+id: content_html
+label: 'Content HTML'
+icon_uuid: null
+description: 'Paragraph with 1 or multiple instances of HTML editor'
+behavior_plugins: {  }

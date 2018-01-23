@@ -1,0 +1,10 @@
+{
+  "name": "drupal/spamspan",
+  "type": "drupal-module",
+  "description": "The SpamSpan module obfuscates email addresses to help prevent spambots from collecting them. It implements the technique at http://www.spamspan.com.",
+  "homepage": "http://drupal.org/project/spamspan",
+  "license": "GPL-2.0+",
+  "require": {
+    "drupal/core": "~8.1"
+  }
+}

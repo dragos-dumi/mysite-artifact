@@ -1,0 +1,7 @@
+raven.admin:
+  path: '/admin/config/development/raven'
+  defaults:
+    _form: 'Drupal\raven\Form\RavenConfigForm'
+    _title: 'Raven'
+  requirements:
+    _permission: 'administer site configuration'

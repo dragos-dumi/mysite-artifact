@@ -1,0 +1,9 @@
+custom:
+  text_current: '{current} sur {total}'
+  text_previous: '« Préc.'
+  text_next: 'Suivant »'
+  text_close: Fermer
+  initialwidth: '300'
+  initialheight: '250'
+  slideshow:
+    text_stop: 'stopper le diaporama'
