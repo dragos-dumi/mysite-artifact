@@ -1,0 +1,26 @@
+uuid: 8c923360-d96a-404c-83d9-05dc02dfcf5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - cog
+_core:
+  default_config_hash: kkISXE1LT2FJEoYnqCrCpeFB-2pmGmMxMklVk7rQcfg
+id: cog_footer
+theme: cog
+region: branding
+weight: -5
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Information links'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

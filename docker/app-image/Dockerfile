@@ -1,6 +1,6 @@
 # This Dockerfile provides a base level of OS packages with PHP-CLI and extensions
 
-FROM dragosdumi/php-cli:latest
+FROM dragosdumi/mysite-php-cli:latest
 
 COPY deploy /app
 

@@ -15,7 +15,7 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 31085
+#    nodePort: 31085
     protocol: TCP
 ---
 apiVersion: v1

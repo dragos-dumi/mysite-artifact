@@ -1,12 +1,29 @@
 .region-branding {
+  padding-left: 15px;
+  margin-bottom: 25px;
   .block-system-menublock ul.menu {
     @extend .no-ul-list;
+    > li {
+      margin-right: 1em;
+    }
+    a {
+      padding: 0 5px;
+    }
+  }
+  .block-system-branding-block {
+    border-bottom: 2px solid $blk;
+    margin-bottom: 15px;
   }
 }
-
 .site-branding-text {
-  padding: 30px 10px 10px;
-  font-size: 135%;
+  //padding: 10px 10px 10px 0;
+  //font-size: 250%;
+  a {
+    color: $blk;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 // logo values
 div.site-branding a.logo {

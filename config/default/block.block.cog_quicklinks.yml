@@ -1,0 +1,27 @@
+uuid: a50a550a-c58f-49fb-9ebd-97e868863ed9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.quick-links
+  module:
+    - menu_block
+  theme:
+    - cog
+id: cog_quicklinks
+theme: cog
+region: branding
+weight: -6
+provider: null
+plugin: 'menu_block:quick-links'
+settings:
+  id: 'menu_block:quick-links'
+  label: 'Quick links'
+  provider: menu_block
+  label_display: visible
+  level: 1
+  depth: 0
+  expand: 0
+  parent: 'quick-links:'
+  suggestion: quick_links
+visibility: {  }

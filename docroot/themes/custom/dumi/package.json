@@ -1,5 +1,5 @@
 {
-  "name": "STARTERKIT",
+  "name": "Dumi",
   "version": "0.1.0",
   "description": "Front-end build tools for custom Drupal theme.",
   "repository": {
@@ -67,6 +67,7 @@
     "watch": "gulp watch"
   },
   "dependencies": {
+    "grunt-cli": "^1.2.0",
     "gulp-install": "^1.1.0"
   }
 }

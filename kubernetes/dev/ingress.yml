@@ -6,14 +6,19 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: mysite-ip
   labels:
     app: drupal
-    tier: nginx-fpm
+    tier: varnish
     environment: dev
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: varnish-svc
+  backend:
+    serviceName: varnish
+    servicePort: 80
+#  rules:
+#  - host: dragosdumitrescu.ro
+#    http:
+#      paths:
+#      - path: /
+#        backend:
+#          serviceName: varnish
 #          serviceName: nginx
-          servicePort: 80
+#          servicePort: 80
+#

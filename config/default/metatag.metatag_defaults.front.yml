@@ -7,5 +7,7 @@ _core:
 id: front
 label: 'Front page'
 tags:
-  canonical_url: '[site:url]'
   shortlink: '[site:url]'
+  title: 'Home | Dragos Dumitrescu (dragos-dumi)'
+  canonical_url: '[site:url]'
+  description: 'dragos-dumi personal blog, sharing Drupal related articles'

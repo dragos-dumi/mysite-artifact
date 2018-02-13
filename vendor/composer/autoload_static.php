@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4
+class ComposerStaticInit00ac1b87de7a9e1d29b7a6adc6d855a0
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -140,9 +140,6 @@ class ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4
             'Consolidation\\AnnotatedCommand\\' => 31,
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
-            'CommerceGuys\\Intl\\' => 18,
-            'CommerceGuys\\Enum\\' => 18,
-            'CommerceGuys\\Addressing\\' => 24,
         ),
         'B' => 
         array (
@@ -447,18 +444,6 @@ class ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
-        ),
-        'CommerceGuys\\Intl\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commerceguys/intl/src',
-        ),
-        'CommerceGuys\\Enum\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commerceguys/enum/src',
-        ),
-        'CommerceGuys\\Addressing\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commerceguys/addressing/src',
         ),
         'Behat\\Mink\\Driver\\' => 
         array (
@@ -777,71 +762,6 @@ class ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4
         'Caxy\\HtmlDiff\\Table\\TableMatch' => __DIR__ . '/..' . '/caxy/php-htmldiff/lib/Caxy/HtmlDiff/Table/TableMatch.php',
         'Caxy\\HtmlDiff\\Table\\TablePosition' => __DIR__ . '/..' . '/caxy/php-htmldiff/lib/Caxy/HtmlDiff/Table/TablePosition.php',
         'Caxy\\HtmlDiff\\Table\\TableRow' => __DIR__ . '/..' . '/caxy/php-htmldiff/lib/Caxy/HtmlDiff/Table/TableRow.php',
-        'CommerceGuys\\Addressing\\Address' => __DIR__ . '/..' . '/commerceguys/addressing/src/Address.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\AddressField' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/AddressField.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\AddressFormat' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/AddressFormat.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\AddressFormatHelper' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/AddressFormatHelper.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\AddressFormatRepository' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/AddressFormatRepository.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\AddressFormatRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/AddressFormatRepositoryInterface.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\AdministrativeAreaType' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/AdministrativeAreaType.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\DependentLocalityType' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/DependentLocalityType.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\LocalityType' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/LocalityType.php',
-        'CommerceGuys\\Addressing\\AddressFormat\\PostalCodeType' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressFormat/PostalCodeType.php',
-        'CommerceGuys\\Addressing\\AddressInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/AddressInterface.php',
-        'CommerceGuys\\Addressing\\Country\\CountryRepository' => __DIR__ . '/..' . '/commerceguys/addressing/src/Country/CountryRepository.php',
-        'CommerceGuys\\Addressing\\Country\\CountryRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/Country/CountryRepositoryInterface.php',
-        'CommerceGuys\\Addressing\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/Exception/ExceptionInterface.php',
-        'CommerceGuys\\Addressing\\Exception\\UnexpectedTypeException' => __DIR__ . '/..' . '/commerceguys/addressing/src/Exception/UnexpectedTypeException.php',
-        'CommerceGuys\\Addressing\\Formatter\\DefaultFormatter' => __DIR__ . '/..' . '/commerceguys/addressing/src/Formatter/DefaultFormatter.php',
-        'CommerceGuys\\Addressing\\Formatter\\FormatterInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/Formatter/FormatterInterface.php',
-        'CommerceGuys\\Addressing\\Formatter\\PostalLabelFormatter' => __DIR__ . '/..' . '/commerceguys/addressing/src/Formatter/PostalLabelFormatter.php',
-        'CommerceGuys\\Addressing\\Formatter\\PostalLabelFormatterInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/Formatter/PostalLabelFormatterInterface.php',
-        'CommerceGuys\\Addressing\\ImmutableAddressInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/ImmutableAddressInterface.php',
-        'CommerceGuys\\Addressing\\LocaleHelper' => __DIR__ . '/..' . '/commerceguys/addressing/src/LocaleHelper.php',
-        'CommerceGuys\\Addressing\\PostalCodeHelper' => __DIR__ . '/..' . '/commerceguys/addressing/src/PostalCodeHelper.php',
-        'CommerceGuys\\Addressing\\Subdivision\\LazySubdivisionCollection' => __DIR__ . '/..' . '/commerceguys/addressing/src/Subdivision/LazySubdivisionCollection.php',
-        'CommerceGuys\\Addressing\\Subdivision\\PatternType' => __DIR__ . '/..' . '/commerceguys/addressing/src/Subdivision/PatternType.php',
-        'CommerceGuys\\Addressing\\Subdivision\\Subdivision' => __DIR__ . '/..' . '/commerceguys/addressing/src/Subdivision/Subdivision.php',
-        'CommerceGuys\\Addressing\\Subdivision\\SubdivisionRepository' => __DIR__ . '/..' . '/commerceguys/addressing/src/Subdivision/SubdivisionRepository.php',
-        'CommerceGuys\\Addressing\\Subdivision\\SubdivisionRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/addressing/src/Subdivision/SubdivisionRepositoryInterface.php',
-        'CommerceGuys\\Addressing\\UpdateHelper' => __DIR__ . '/..' . '/commerceguys/addressing/src/UpdateHelper.php',
-        'CommerceGuys\\Addressing\\Validator\\Constraints\\AddressFormatConstraint' => __DIR__ . '/..' . '/commerceguys/addressing/src/Validator/Constraints/AddressFormatConstraint.php',
-        'CommerceGuys\\Addressing\\Validator\\Constraints\\AddressFormatConstraintValidator' => __DIR__ . '/..' . '/commerceguys/addressing/src/Validator/Constraints/AddressFormatConstraintValidator.php',
-        'CommerceGuys\\Addressing\\Validator\\Constraints\\CountryConstraint' => __DIR__ . '/..' . '/commerceguys/addressing/src/Validator/Constraints/CountryConstraint.php',
-        'CommerceGuys\\Addressing\\Validator\\Constraints\\CountryConstraintValidator' => __DIR__ . '/..' . '/commerceguys/addressing/src/Validator/Constraints/CountryConstraintValidator.php',
-        'CommerceGuys\\Addressing\\Zone\\Zone' => __DIR__ . '/..' . '/commerceguys/addressing/src/Zone/Zone.php',
-        'CommerceGuys\\Addressing\\Zone\\ZoneTerritory' => __DIR__ . '/..' . '/commerceguys/addressing/src/Zone/ZoneTerritory.php',
-        'CommerceGuys\\Enum\\AbstractEnum' => __DIR__ . '/..' . '/commerceguys/enum/src/AbstractEnum.php',
-        'CommerceGuys\\Intl\\Calculator' => __DIR__ . '/..' . '/commerceguys/intl/src/Calculator.php',
-        'CommerceGuys\\Intl\\Country\\Country' => __DIR__ . '/..' . '/commerceguys/intl/src/Country/Country.php',
-        'CommerceGuys\\Intl\\Country\\CountryEntityInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Country/CountryEntityInterface.php',
-        'CommerceGuys\\Intl\\Country\\CountryInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Country/CountryInterface.php',
-        'CommerceGuys\\Intl\\Country\\CountryRepository' => __DIR__ . '/..' . '/commerceguys/intl/src/Country/CountryRepository.php',
-        'CommerceGuys\\Intl\\Country\\CountryRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Country/CountryRepositoryInterface.php',
-        'CommerceGuys\\Intl\\Currency\\Currency' => __DIR__ . '/..' . '/commerceguys/intl/src/Currency/Currency.php',
-        'CommerceGuys\\Intl\\Currency\\CurrencyEntityInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Currency/CurrencyEntityInterface.php',
-        'CommerceGuys\\Intl\\Currency\\CurrencyInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Currency/CurrencyInterface.php',
-        'CommerceGuys\\Intl\\Currency\\CurrencyRepository' => __DIR__ . '/..' . '/commerceguys/intl/src/Currency/CurrencyRepository.php',
-        'CommerceGuys\\Intl\\Currency\\CurrencyRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Currency/CurrencyRepositoryInterface.php',
-        'CommerceGuys\\Intl\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Exception/ExceptionInterface.php',
-        'CommerceGuys\\Intl\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/commerceguys/intl/src/Exception/InvalidArgumentException.php',
-        'CommerceGuys\\Intl\\Exception\\UnknownCountryException' => __DIR__ . '/..' . '/commerceguys/intl/src/Exception/UnknownCountryException.php',
-        'CommerceGuys\\Intl\\Exception\\UnknownCurrencyException' => __DIR__ . '/..' . '/commerceguys/intl/src/Exception/UnknownCurrencyException.php',
-        'CommerceGuys\\Intl\\Exception\\UnknownLanguageException' => __DIR__ . '/..' . '/commerceguys/intl/src/Exception/UnknownLanguageException.php',
-        'CommerceGuys\\Intl\\Exception\\UnknownLocaleException' => __DIR__ . '/..' . '/commerceguys/intl/src/Exception/UnknownLocaleException.php',
-        'CommerceGuys\\Intl\\Formatter\\NumberFormatter' => __DIR__ . '/..' . '/commerceguys/intl/src/Formatter/NumberFormatter.php',
-        'CommerceGuys\\Intl\\Formatter\\NumberFormatterInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Formatter/NumberFormatterInterface.php',
-        'CommerceGuys\\Intl\\Language\\Language' => __DIR__ . '/..' . '/commerceguys/intl/src/Language/Language.php',
-        'CommerceGuys\\Intl\\Language\\LanguageEntityInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Language/LanguageEntityInterface.php',
-        'CommerceGuys\\Intl\\Language\\LanguageInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Language/LanguageInterface.php',
-        'CommerceGuys\\Intl\\Language\\LanguageRepository' => __DIR__ . '/..' . '/commerceguys/intl/src/Language/LanguageRepository.php',
-        'CommerceGuys\\Intl\\Language\\LanguageRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/Language/LanguageRepositoryInterface.php',
-        'CommerceGuys\\Intl\\LocaleResolverTrait' => __DIR__ . '/..' . '/commerceguys/intl/src/LocaleResolverTrait.php',
-        'CommerceGuys\\Intl\\NumberFormat\\NumberFormat' => __DIR__ . '/..' . '/commerceguys/intl/src/NumberFormat/NumberFormat.php',
-        'CommerceGuys\\Intl\\NumberFormat\\NumberFormatEntityInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/NumberFormat/NumberFormatEntityInterface.php',
-        'CommerceGuys\\Intl\\NumberFormat\\NumberFormatInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/NumberFormat/NumberFormatInterface.php',
-        'CommerceGuys\\Intl\\NumberFormat\\NumberFormatRepository' => __DIR__ . '/..' . '/commerceguys/intl/src/NumberFormat/NumberFormatRepository.php',
-        'CommerceGuys\\Intl\\NumberFormat\\NumberFormatRepositoryInterface' => __DIR__ . '/..' . '/commerceguys/intl/src/NumberFormat/NumberFormatRepositoryInterface.php',
         'Composer\\Installers\\AglInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AglInstaller.php',
         'Composer\\Installers\\AimeosInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AimeosInstaller.php',
         'Composer\\Installers\\AnnotateCmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AnnotateCmsInstaller.php',
@@ -6497,7 +6417,6 @@ class ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4
         'cweagans\\Composer\\PatchEvent' => __DIR__ . '/..' . '/cweagans/composer-patches/src/PatchEvent.php',
         'cweagans\\Composer\\PatchEvents' => __DIR__ . '/..' . '/cweagans/composer-patches/src/PatchEvents.php',
         'cweagans\\Composer\\Patches' => __DIR__ . '/..' . '/cweagans/composer-patches/src/Patches.php',
-        'geoPHP' => __DIR__ . '/..' . '/phayes/geophp/geoPHP.inc',
         'grasmash\\DrupalSecurityWarning\\Composer\\Plugin' => __DIR__ . '/..' . '/grasmash/drupal-security-warning/src/Composer/Plugin.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlock\\Context' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Context.php',
@@ -6529,10 +6448,10 @@ class ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit32c3af4dc274b694b2247a44b8f8e5b4::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit00ac1b87de7a9e1d29b7a6adc6d855a0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit00ac1b87de7a9e1d29b7a6adc6d855a0::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit00ac1b87de7a9e1d29b7a6adc6d855a0::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit00ac1b87de7a9e1d29b7a6adc6d855a0::$classMap;
 
         }, null, ClassLoader::class);
     }

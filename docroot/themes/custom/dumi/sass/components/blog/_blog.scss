@@ -1,0 +1,29 @@
+.panel-cog-layout-one-two-one-cr.node--type-blog { // one-two-one content right
+  @include breakpoint($up-sm) {
+    .cog-layout--middle-left {
+      @include span(2 of 12);
+      box-sizing: border-box;
+      border-right: 1px solid $med-gray;
+      //.field {
+      //  display: inline-block;
+      //}
+    }
+    .cog-layout--middle-right {
+      @include span(10 of 12 last);
+
+    }
+  }
+
+  .field--name-node-title {
+    text-align: center;
+  }
+  .more-link {
+    margin: 1em auto;
+    text-align: center;
+    a {
+      @extend .button;
+    }
+  }
+
+
+}

@@ -1,0 +1,9 @@
+.paragraph--type--content-html {
+  .align-left {
+    @include align-left-margin();
+  }
+}
+
+.field--type-image {
+  margin: 0 auto;
+}

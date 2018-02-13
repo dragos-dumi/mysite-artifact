@@ -39,6 +39,8 @@ one_two_one_cl:
 one_two_one_cr:
   label: One Two One - Content Right
   category: Cog
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
   template: panel_layouts/one_two_one_cr
   icon: panel_layouts/one_two_one_cr/one_two_one_cr.png
   regions:

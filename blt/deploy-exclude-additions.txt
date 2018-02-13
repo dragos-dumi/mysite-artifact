@@ -1,4 +1,5 @@
 docker-runtime
+.sql
 
 private-files/*
 

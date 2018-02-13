@@ -1,0 +1,27 @@
+uuid: 74d3b08b-84ad-4d21-8cb0-256ad332cd7d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dumi
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: dumi_page_title
+theme: dumi
+region: content
+weight: -3
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/blog\r\n/blog/*"
+    negate: true
+    context_mapping: {  }

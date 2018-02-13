@@ -53,7 +53,7 @@ spec:
         environment: dev
     spec:
       containers:
-      - image: mysql:5.6
+      - image: dragosdumi/mysite-mysql
         name: mysql
         env:
         - name: MYSQL_DATABASE

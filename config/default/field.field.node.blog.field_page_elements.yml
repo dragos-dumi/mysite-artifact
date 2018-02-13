@@ -1,0 +1,29 @@
+uuid: dbc9f535-99e2-4a03-8ad4-0043e1fb9273
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page_elements
+    - node.type.blog
+  module:
+    - entity_reference_revisions
+id: node.blog.field_page_elements
+field_name: field_page_elements
+entity_type: node
+bundle: blog
+label: Elements
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles: null
+    target_bundles_drag_drop:
+      content_html:
+        weight: 2
+        enabled: false
+field_type: entity_reference_revisions

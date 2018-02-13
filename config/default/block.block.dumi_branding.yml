@@ -1,0 +1,25 @@
+uuid: 52476be0-e17c-44eb-b420-d326c2b64b38
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dumi
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: dumi_branding
+theme: dumi
+region: branding
+weight: -3
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: false
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

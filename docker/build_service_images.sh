@@ -40,6 +40,13 @@ docker build \
   --tag ${DOCKER_REPO}/mysite-php-cli:latest \
   .
 
+cd $ROOT_DIR/mysql
+# Copy deploy files to the image dir
+docker build \
+  --tag ${DOCKER_REPO}/mysite-mysql:${BUILD_NUMBER} \
+  --tag ${DOCKER_REPO}/mysite-mysql:latest \
+  .
+
 # Move back to ROOT_DIR
 cd $ROOT_DIR
 

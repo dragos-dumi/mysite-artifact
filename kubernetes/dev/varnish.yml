@@ -4,18 +4,18 @@ metadata:
   name: varnish
   labels:
     app: drupal
-    tier: nginx-fpm
+    tier: varnish
     environment: dev
 spec:
   selector:
     app: drupal
-    tier: nginx-fpm
+    tier: varnish
     environment: dev
   type: NodePort
   ports:
   - port: 80
     targetPort: 6081
-    nodePort: 31086
+#    nodePort: 31086
     protocol: TCP
 ---
 apiVersion: apps/v1beta1
@@ -24,13 +24,13 @@ metadata:
   name: varnish
   labels:
     app: drupal
-    tier: nginx-fpm
+    tier: varnish
     environment: dev
 spec:
   selector:
     matchLabels:
       app: drupal
-      tier: nginx-fpm
+      tier: varnish
       environment: dev
   strategy:
     type: Recreate
@@ -38,7 +38,7 @@ spec:
     metadata:
       labels:
         app: drupal
-        tier: nginx-fpm
+        tier: varnish
         environment: dev
     spec:
       terminationGracePeriodSeconds: 30

@@ -18,6 +18,9 @@ docker push ${DOCKER_REPO}/mysite-php-fpm:latest
 cd $ROOT_DIR/php-cli
 docker push ${DOCKER_REPO}/mysite-php-cli:latest
 
+cd $ROOT_DIR/mysql
+docker push ${DOCKER_REPO}/mysite-mysql:latest
+
 # Move back to ROOT_DIR
 cd $ROOT_DIR
 

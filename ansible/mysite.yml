@@ -1,0 +1,86 @@
+- hosts: mysite
+  vars_files:
+      -  mysite/group_vars/mysite-vars.yml
+      -  mysite/group_vars/mysite-vault.yml
+  roles:
+    - { role: geerlingguy.firewall, tags: security }
+    - { role: geerlingguy.security, tags: security }
+    - { role: geerlingguy.docker, tags: docker }
+    - { role: geerlingguy.docker, tags: docker }
+  tasks:
+
+    - name: set timezone to Europe/Bucharest
+      timezone:
+        name: Europe/Bucharest
+
+    - name: create system accounts
+      user: name="{{ item.username }}" comment="{{ item.comment|default('Created by Ansible deployment') }}"
+        group="{{ item.group }}" groups="{{ item.groups }}"
+        append="{{ item.append }}" shell="{{ item.shell|default('/bin/bash') }}"
+        state="{{ item.state|default('present') }}"
+      with_items: "{{ users_system }}"
+      tags:
+        - create_system_users
+
+    - name: install openssh keys
+      authorized_key: user="{{ item.username }}" key="{{ item.key }}" state="{{ item.state|default('present') }}"
+      with_items: "{{ ssh_authorized_keys }}"
+      tags:
+        - create_system_users
+        - install_sshm_keys
+
+    - name: add drupal crontab
+      cron:
+        name: "Drupal cron"
+        user: root
+        minute: "40"
+        job: "wget -O - -q -t 1 http://dragosdumitrescu.ro/cron.php?cron_key={{ cron_key }}"
+
+    - name: Ensures mysite dir exists
+      file: path=/home/php/mysite state=directory
+      owner: php
+      tags:
+        - docker-compose
+
+    - name: Ensures docker-runtime dir exists
+      file: path=/home/php/mysite/docker-runtime state=directory
+      tags:
+        - docker-compose
+
+    - name: Ensures www dir exists
+      file: path=/home/php/mysite/www state=directory
+      owner: php
+      tags:
+        - docker-compose
+
+    - name: Ensures public dir exists
+      file: path=/home/php/mysite/public-files state=directory
+      tags:
+        - docker-compose
+
+    - name: Ensures private dir exists
+      file: path=/home/php/mysite/private-files state=directory
+      tags:
+        - docker-compose
+
+    - name: copy docker-compose
+      copy:
+        src: "mysite/files/docker-compose.yml"
+        dest: "/home/php/mysite/docker-compose.yml"
+        owner: php
+        group: users
+        mode: 0644
+      tags:
+        - docker-compose
+
+    - name: configure docker compose env
+      template: src="mysite/files/.env" dest="/home/php/mysite/.env"
+      owner: php
+      with_items:
+        - {
+            mysql_root_password: "{{ mysql_root_password }}",
+            mysql_user_password: "{{ mysql_user_password }}",
+            hash_salt: "{{ hash_salt }}"
+          }
+      tags:
+        - docker-compose

@@ -1,0 +1,23 @@
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
+  - "443"
+
+security_ssh_permit_root_login: "yes"
+ssh_key_files:
+  - "id_rsa"
+  - "id_rsa.pub"
+
+user_php_hash: "{{  vault_php_user_hash }}"
+users_system:
+  - { username: "php", group: "users", groups: "users", append: "yes", password: "{{ user_php_hash }}" }
+ssh_authorized_keys:
+  - { username: "php", key: "{{ vault_dragos_pub }}" }
+
+cron_key: "{{ vault_cron_key }}"
+
+mysql_root_password: "{{  vault_mysql_root_password }}"
+mysql_user_password: "{{  vault_mysql_user_password }}"
+hash_salt: "{{  vault_hash_salt }}"
+
+drush_version: 8.1.15

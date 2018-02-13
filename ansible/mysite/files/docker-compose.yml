@@ -1,0 +1,99 @@
+version: '3'
+services:
+  db:
+    image: dragosdumi/mysite-mysql
+    restart: always
+    env_file: .env
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
+      - ./docker-runtime/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+  nginx:
+    image: dragosdumi/mysite-nginx:latest
+    restart: always
+    env_file: .env
+    volumes:
+      - ./www:/var/www
+      - ./public-files:/var/www/docroot/sites/default/files
+    depends_on:
+      - php-fpm
+    links:
+      - php-fpm:php-fpm
+  php-fpm:
+    image: dragosdumi/mysite-php-fpm:latest
+    restart: always
+    env_file: .env
+    volumes:
+      - ./www:/var/www
+      - ./public-files:/var/www/docroot/sites/default/files
+      - ./private-files:/var/www/private-files
+    links:
+      - db:db
+      - redis:redis
+    depends_on:
+      - db
+      - redis
+    environment:
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_HOST: "${MYSQL_HOST}"
+      MYSQL_PORT: "${MYSQL_PORT}"
+      REDIS_HOST: "${REDIS_HOST}"
+      HASH_SALT: "${HASH_SALT}"
+      DRUPAL_ROOT: "/var/www/docroot"
+      REDIS_HOST: "redis"
+      PUBLIC_FILES: "sites/default/files"
+      PRIVATE_FILES: "private-files"
+      RSYNC_SOURCE: "/app"
+      DRUPAL_ROOT: "/var/www/docroot"
+      PROJECT_ROOT: "/var/www"
+  php-cli:
+    image: dragosdumi/mysite-app-image:latest
+    restart: always
+    env_file: .env
+    volumes:
+      - ./www:/var/www
+      - ./public-files:/var/www/docroot/sites/default/files
+      - ./private-files:/var/www/private-files
+    links:
+      - db:db
+      - redis:redis
+    depends_on:
+      - db
+      - redis
+    environment:
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_HOST: "${MYSQL_HOST}"
+      MYSQL_PORT: "${MYSQL_PORT}"
+      REDIS_HOST: "${REDIS_HOST}"
+      HASH_SALT: "${HASH_SALT}"
+      DRUPAL_ROOT: "/var/www/docroot"
+      REDIS_HOST: "redis"
+      PUBLIC_FILES: "sites/default/files"
+      PRIVATE_FILES: "private-files"
+      RSYNC_SOURCE: "/app"
+      DRUPAL_ROOT: "/var/www/docroot"
+      PROJECT_ROOT: "/var/www"
+  redis:
+    image: redis
+    env_file: .env
+  varnish:
+    image: dragosdumi/mysite-varnish:latest
+    env_file: .env
+    depends_on:
+      - nginx
+    links:
+      - nginx:nginx
+    environment:
+      VARNISH_SECRET: "${VARNISH_SECRET}"
+      VARNISH_BACKEND_HOST: "${VARNISH_BACKEND_HOST}"
+      VARNISH_BACKEND_PORT: "${VARNISH_BACKEND_PORT}"
+    ports:
+    - "${WEB_PORT_VARNISH}:6081"

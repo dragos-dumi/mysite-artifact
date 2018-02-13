@@ -45,4 +45,10 @@ vm:
 #setup:
 #  strategy: import
 #  dump-file: ../sql/site.sql
-target-hooks: null
+target-hooks:
+  frontend-setup:
+    dir: ${docroot}/themes/custom/dumi
+    command: 'npm install && npm install grunt-cli'
+  frontend-build:
+    dir: ${docroot}/themes/custom/dumi
+    command: 'npm run build'

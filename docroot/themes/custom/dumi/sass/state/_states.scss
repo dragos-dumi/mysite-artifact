@@ -5,3 +5,12 @@
 
 }
 /* stylelint-enable */
+a {
+  &.is-active {
+    //@extend a:hover;
+    color: $white;
+    background-color: $blk;
+    @include borderradius();
+  }
+}
+

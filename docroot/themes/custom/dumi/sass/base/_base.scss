@@ -30,29 +30,29 @@ h6 {
 }
 
 h1 {
-  font-size: 250%;
-  line-height: 165%;
+  font-size: 210%;
+  line-height: 135%;
 }
 
 h2 {
-  font-size: 210%;
-  line-height: 145%;
+  font-size: 160%;
+  line-height: 110%;
 }
 
 h3 {
-  font-size: 180%;
-  line-height: 145%;
+  font-size: 140%;
+  line-height: 90%;
 }
 
 h4 {
-  font-size: 170%;
-  line-height: 145%;
+  font-size: 130%;
+  line-height: 75%;
 }
 
 h5,
 h6 {
-  font-size: 140%;
-  line-height: 145%;
+  font-size: 115%;
+  line-height: 65%;
 }
 
 body .menu-item {
@@ -69,7 +69,7 @@ a:link,
 a:visited {
   text-decoration: none;
   color: $link;
-  cursor: inherit;
+  cursor: pointer;
 
   &:hover {
     color: $dark-gray;

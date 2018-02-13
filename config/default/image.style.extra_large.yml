@@ -2,6 +2,8 @@ uuid: 9c4b4d7d-0af7-4a97-8b2d-fa6b2349dae4
 langcode: en
 status: true
 dependencies:
+  config:
+    - crop.type.free_crop
   module:
     - crop
 name: extra_large
@@ -18,6 +20,6 @@ effects:
     id: image_scale
     weight: 2
     data:
-      width: 1400
-      height: 1200
+      width: 1000
+      height: null
       upscale: false

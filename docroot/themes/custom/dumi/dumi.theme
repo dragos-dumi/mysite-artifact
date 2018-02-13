@@ -81,6 +81,10 @@ function dumi_preprocess_node(&$variables) {
   }
 }
 
+//function dumi_ds_entity_view(&$variables) {
+//  $variables['attributes']['class'][] =
+//}
+
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\node\NodeForm.
  *
